@@ -1,0 +1,38 @@
+.actionlogo{
+    height: 25px;
+    width: 25px;
+}
+
+.dragstyle{
+    color: gray;
+}
+.orstyle{
+    color: gray;
+    font-size: 12px;
+}
+input[type="file"] {
+    display: none;
+}
+.uploadedsign{
+    float: right;
+    padding-right: 10px;
+    color: #0078d7
+}
+
+.failed{
+    float: right;
+    padding-right: 10px;
+    color: red;  
+}
+
+.filerow{
+    font-size: 13px;
+}
+.checkicon{
+    height: 11px;
+    width: 11px;
+}
+.sharefileloadingimage{
+    height: 25px;
+    width: 30px;
+}

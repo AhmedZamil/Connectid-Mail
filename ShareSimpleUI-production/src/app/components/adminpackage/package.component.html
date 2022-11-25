@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <div [formGroup]="filterForm" class="row no-gutters pt-4 pb-3">
+
+    <div class="col-md-8 ms-textAlignCenter" style="height: 20px;">
+      <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+    </div>
+
+    <div class="col-md-3 pr-2">
+      <input formControlName="searchText" type="text" class="form-control form-control-sm" placeholder="{{'Search' | translate}}...">
+    </div>
+
+    <div class="col-md-1">
+      <button  type="button" class="ms-Button ms-Button--primary float-right">
+        <span class="ms-Button-label" (click)="openPackagedialog()">{{"Add New" | translate}}</span>
+      </button>
+    </div>
+  </div>
+
+  <!--data list-->
+  <div class="data-list-header">
+    <div class="row no-gutters">
+      <div class="col-sm-6">
+        {{"Name" | translate}}
+      </div>
+      <div class="col-sm-5">
+        {{"Price" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Action" | translate}}
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="packages">
+    <div *ngFor="let rowdata of packages | paginate: { itemsPerPage: displayLength, currentPage: currentPage }">
+      <div class="data-list-row border border border-top-0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              <span>{{rowdata.packageName}}</span>
+            </div>
+            <div class="col-sm-5">
+              {{rowdata.price}}
+            </div>
+            <div class="col-sm-1">
+              <i title="Edit" style="color: #3f51b5;font-size: 20px;cursor: pointer;" class="fa fa-edit" (click)="openPackagedialog(rowdata.id)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="entityCount==0" class="data-list-row border border-top-0">
+      <div class="row">
+        <div class="col-12 text-center">{{"No Data Found" | translate}}</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="data-list-pagination border border-top-0 row-striped">
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="second-element" *ngIf="entityCount>0">{{"Showing" | translate}} {{entitystart}} {{"to" | translate}} {{entityend}} {{"of" | translate}} {{entityCount}} {{"entries" | translate}}</p>
+      </div>
+      <div class="col-sm-8">
+        <pagination-controls style="float:right;"
+        previousLabel="{{'Previous' | translate}}"
+        nextLabel="{{'Next' | translate}}"
+        (pageChange)="pageChanged($event)" #api></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <div class="packagedialog">
+    <div class="ms-Dialog ms-Dialog--blocking">
+      <div class="ms-Dialog-title">{{"Edit Package" | translate}}</div>
+      <form [formGroup]="packageForm">
+
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+          <div class="ms-TextField">
+            <label class="ms-Label">{{"Name" | translate}}</label>
+            <input formControlName="packageName" class="ms-TextField-field" type="text" value="" placeholder="">
+          </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+          <div class="ms-TextField">
+            <label class="ms-Label">{{"Price" | translate}}</label>
+            <input formControlName="price" class="ms-TextField-field" type="text" value="" placeholder="">
+          </div>
+        </div>
+      </form>
+      <div class="ms-Dialog-actions">
+        <button  type="button" [disabled]="packageForm.invalid" (click)="packageForm.valid && packageSubmit()" class="ms-Button ms-Button--primary">
+          <span class="ms-Button-label">{{"Save" | translate}}</span>
+        </button>
+        <button  type="button" (click)="dialogComponent.close()" class="ms-Button">
+          <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

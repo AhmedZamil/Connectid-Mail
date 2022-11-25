@@ -1,0 +1,17 @@
+﻿1.  user_registration_EmailTemplate.html
+2.  user_registration_EmailTemplate.html
+3.  user_registration_EmailTemplate.html
+4.  user_registration_inactive_company.html
+5.  user_registration_email_to_admin.html
+6.  customer_signup_notification_to_compliance.html
+7.  trial_ending_email_template.html
+8.  user_terminated_trial_subscription.html
+9.  welcome_user_from_trial_to_paid.html
+10. notify_compliance_from_trial_to_paid.html
+11. company_inactivation_email_to_compliance.html
+12. company_inactivation_email_to_customer.html
+13. otp_send_EmailTemplate.html
+14. postdata_share_EmailTemplate.html
+15. download_request_EmailTemplate.html
+16. download_files_EmailTemplate.html
+17. error_mail.html

@@ -1,0 +1,38 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+      <div class="ms-Grid-row ms-textAlignCenter pt-5 companyname">
+        <app-header></app-header>
+      </div>
+
+      <div class="ms-Grid-row ms-textAlignCenter pt-2">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+
+      <div class="ms-Grid-row ms-textAlignCenter pt-2 pb-4 consent-title">
+        <span *ngIf="days>=0">{{"These files will be available for" | translate}} {{days}} {{"more days." | translate}}</span>
+        <span *ngIf="days<1">{{"These files were deleted." | translate}}</span>
+        <div>
+          <span class="permission" *ngIf="status=='downloadpermission'">{{"Permission granted to download following files" | translate}}</span>
+        </div>
+      </div>
+
+      <div *ngFor="let item of files" class="ms-Grid-row pt-4">
+        <span>{{item.name}}</span>
+        <span class="float-right">
+          <a style="text-decoration: none" target="_blank" [href]="item.downloadUrl" title="">
+            <span style="background-color: #0078d7;color: white;height: 32px;min-width: 80px;padding: 1px 10px 2px;">{{"Download" | translate}}</span>
+          </a>
+        </span>
+      </div>
+      <div class="ms-Grid-row pt-4">
+        <app-safety-signature></app-safety-signature>
+      </div>
+
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+  </div>
+</div>

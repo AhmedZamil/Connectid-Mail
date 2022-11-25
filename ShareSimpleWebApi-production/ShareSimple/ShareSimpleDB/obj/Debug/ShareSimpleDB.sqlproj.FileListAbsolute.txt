@@ -1,0 +1,11 @@
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\bin\Debug\ShareSimpleDB.dacpac
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\bin\Debug\ShareSimpleDB.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\bin\Debug\ShareSimpleDB.pdb
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\obj\Debug\ShareSimpleDB.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\obj\Debug\ShareSimpleDB.pdb
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\obj\Debug\ShareSimpleDB.sqlprojAssemblyReference.cache
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\bin\Debug\ShareSimpleDB.dacpac
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\bin\Debug\ShareSimpleDB.dll
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\bin\Debug\ShareSimpleDB.pdb
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\obj\Debug\ShareSimpleDB.dll
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\obj\Debug\ShareSimpleDB.pdb

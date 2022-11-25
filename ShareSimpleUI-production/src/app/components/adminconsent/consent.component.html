@@ -1,0 +1,147 @@
+<div class="container-fluid">
+  <div [formGroup]="filterForm">
+    <div class="row no-gutters pt-4 pb-3">
+      <div class="col-md-10 routeheader">
+        {{"Consents" | translate}}
+      </div>
+
+      <div class="col-md-2">
+        <button  type="button"  class="ms-Button ms-Button--primary float-right" (click)="openConsentdialog()">
+          <span class="ms-Button-label">+ {{"Add Consent" | translate}}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="row pt-2 pb-4">
+      <div class="col-md-3">
+        <input formControlName="searchText" type="text" class="form-control form-control-sm" placeholder="{{'Search' | translate}}...">
+      </div>
+
+      <div class="col-md-9" style="height: 20px;">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+
+    </div>
+  </div>
+
+  <!--data list-->
+  <div class="data-list-header border border-top-0 border-left-0 border-right-0">
+    <div class="row no-gutters">
+      <div class="col-sm-2">
+        {{"Name" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Type" | translate}}
+      </div>
+      <div class="col-sm-5">
+        {{"Message" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Status" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Action" | translate}}
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="consents">
+    <div *ngFor="let rowdata of consents | paginate: { itemsPerPage: displayLength, currentPage: currentPage }">
+      <div class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-2">
+              <span>{{rowdata.name}}</span>
+            </div>
+            <div class="col-sm-2">
+              <span>{{rowdata.type | translate}}</span>
+            </div>
+            <div class="col-sm-5">
+              <pre class="pretagcss">{{rowdata.consentText}}</pre>
+            </div>
+            <div class="col-sm-2">
+              <i *ngIf="rowdata.isActive == true" title="check" style="color: #0078d7;font-size: 16px;cursor: pointer;" class="fa fa-check"></i>
+            </div>
+            <div class="col-sm-1">
+              <i title="Edit" style="color: #0078d7;font-size: 16px;cursor: pointer;" class="fa fa-pencil" (click)="openConsentdialog(rowdata.id)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="entityCount==0" class="data-list-row">
+      <div class="row">
+        <div class="col-12 text-center">{{"No Data Found" | translate}}</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="data-list-pagination border border-bottom-0 border-left-0 border-right-0 row-striped">
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="second-element" *ngIf="entityCount>0">{{"Showing" | translate}} {{entitystart}} {{"to" | translate}} {{entityend}} {{"of" | translate}} {{entityCount}} {{"entries" | translate}}</p>
+      </div>
+      <div class="col-sm-8">
+        <pagination-controls style="float:right;"
+        previousLabel="{{'Previous' | translate}}"
+        nextLabel="{{'Next' | translate}}" (pageChange)="pageChanged($event)" #api></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <div class="consentdialog">
+    <div class="ms-Dialog ms-Dialog--blocking">
+      <div class="ms-Dialog-title">{{message}}</div>
+      <form [formGroup]="consentForm">
+        <div *ngIf="showerror" class="ms-MessageBar ms-MessageBar--error" style="margin-left: 10px;">
+          <div class="ms-MessageBar-content">
+            <div class="ms-MessageBar-icon">
+              <i class="ms-Icon ms-Icon--ErrorBadge"></i>
+            </div>
+            <div class="ms-MessageBar-text">
+              {{"All consents cannot be deactivated for a consent type. At least one consent should be active." | translate}}
+            </div>
+          </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12">
+          <div class="ms-TextField">
+            <label class="ms-Label">{{"Name" | translate}}</label>
+            <input formControlName="name" class="ms-TextField-field" type="text" value="" placeholder="">
+          </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1 pb-2">
+          <div class="ms-TextField ms-TextField--multiline">
+            <label class="ms-Label">{{"Message" | translate}}</label>
+            <textarea formControlName="consenttext" class="ms-TextField-field"></textarea>
+          </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+          <div class="form-group">
+            <label style="font-size: 13px;">{{"Type" | translate}}</label>
+            <select formControlName="type"  class="form-control form-control-sm">
+              <option *ngFor="let item of config.consentType.list" value="{{config.consentType.values[item]}}">{{config.consentType.labels[item] | translate}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+          <div class="form-group">
+            <label style="font-size: 13px;">{{"Set As Active" | translate}}</label>
+            <select formControlName="isActive" class="form-control form-control-sm">
+              <option value=true>{{"Active" | translate}}</option>
+              <option value=false>{{"Inactive" | translate}}</option>
+            </select>
+          </div>
+        </div>        
+      </form>
+      <div class="ms-Dialog-actions">
+        <button  type="button" [disabled]="consentForm.invalid" (click)="consentForm.valid && packageSubmit()" class="ms-Button ms-Button--primary">
+          <span class="ms-Button-label">{{"Save" | translate}}</span>
+        </button>
+        <button  type="button" (click)="dialogComponent.close()" class="ms-Button">
+          <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

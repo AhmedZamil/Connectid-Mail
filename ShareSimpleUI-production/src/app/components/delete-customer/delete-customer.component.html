@@ -1,0 +1,51 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+      <div class="ms-Grid-row ms-textAlignCenter pt-5 companyname">
+        <app-header *ngIf="company" [company]="company"></app-header>
+      </div>
+      <form *ngIf="!unSubscribed">
+        <div class="ms-Grid-row ms-textAlignCenter pt-4 pb-4 consent-title">
+          {{"You are about to delete your account and all users. Please confirm or cancel." | translate}}
+        </div>
+
+        <hr>
+
+        <div class="ms-Grid-row pt-2 pb-2">
+          <div class="ms-Grid-col ms-sm12">
+            <div class="ms-Grid-row">
+              <div class="ms-Grid-col ms-sm6">
+                <button type="button" class="ms-Button ms-Button--default" (click)="deleteCompany()">
+                  <span class="ms-Button-label">{{"Confirm" | translate}}</span>
+                </button>
+              </div>
+              <div class="ms-Grid-col ms-sm6" style="text-align: right;">
+                <button type="button" class="ms-Button ms-Button--primary" (click)="closeWindow()">
+                  <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div *ngIf="unSubscribed" class="ms-Grid-row ms-textAlignCenter pt-4">
+        <p>
+          {{"Thanks for giving Connectid Mail a try. We are sorry that you did not find Connectid Mail useful and would appreciate your feed-back and suggestions on how to improve the application to suit your needs better. Please feel free to write to us in a mail to" | translate}}
+          <a href="mailTo:compliant@safeonline.dk">compliant@safeonline.dk</a>
+        </p>
+        <p
+          [innerHTML]="'If you are interested in personal data protection, try our tool to protect your data.' | translate: translateParam">
+        </p>
+        <div class="ms-Grid-col ms-sm12 pt-4">
+          <button type="button" class="ms-Button ms-Button--primary" (click)="closeWindow()">
+            <span class="ms-Button-label">{{"Close" | translate}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+  </div>
+</div>

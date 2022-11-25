@@ -1,0 +1,44 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+      <form [formGroup]="consentForm">
+        <div class="ms-Grid-row ms-textAlignCenter pt-5 companyname">
+          <app-header></app-header>
+        </div>
+
+        <div *ngIf="message" class="ms-Grid-row ms-textAlignCenter pt-4 consent-title">
+          {{message}}
+        </div>
+
+        <div class="ms-Grid-row pt-4 pb-2">
+        </div>
+        <div class="ms-Grid-row border consent-description p-2">
+          <pre  class="pretagcss">{{consentMessage}}</pre>
+        </div>
+        <div class="ms-Grid-row pt-1">
+          <div class="ms-CheckBox">
+            <input style="margin-top: 10px;" formControlName="consent1" tabindex="-1" type="checkbox" class="ms-CheckBox-input">
+            <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxa">
+              <span class="ms-Label">{{"I agree to this." | translate}}</span>
+            </label>
+          </div>
+        </div>
+        <hr>
+
+        <div class="ms-Grid-row float-right pt-2 pb-2">
+          <button  type="button" class="ms-Button">
+            <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+          </button>
+          <button  type="button"  [disabled]="consentForm.invalid" (click)="consentForm.valid && confirm()" class="ms-Button ms-Button--primary">
+            <span class="ms-Button-label">{{"Confirm" | translate}}</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+  </div>
+</div>

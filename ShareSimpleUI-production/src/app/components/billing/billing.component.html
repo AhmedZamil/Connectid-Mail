@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div [formGroup]="filterForm">
+
+    <div class="row no-gutters pt-4 pb-3">
+      <div class="col-md-10 routeheader">
+        {{"Billing" | translate}}
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+    <div class="row pt-2 pb-4">
+      <div class="col-md-3">
+        <input formControlName="searchText" type="text" class="form-control form-control-sm" placeholder="{{'Search' | translate}}...">
+      </div>
+
+      <div class="col-md-9" style="height: 20px;">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--data list-->
+  <div class="data-list-header border border-top-0 border-left-0 border-right-0">
+    <div class="row no-gutters">
+      <div class="col-sm-6">
+        {{"Billing month" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"No. of Active users" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Shared file transaction" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Request data transaction" | translate}}
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="billings">
+    <div *ngFor="let rowdata of billings | paginate: { itemsPerPage: displayLength, currentPage: currentPage }">
+      <div class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              {{rowdata.yearmonth}}
+            </div>
+            <div class="col-sm-2">
+              {{rowdata.noOfUsers}}
+            </div>
+            <div class="col-sm-2">
+              {{rowdata.noOfShared}}
+            </div>
+            <div class="col-sm-2">
+              {{rowdata.noOfPostData }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="entityCount==0" class="data-list-row">
+      <div class="row">
+        <div class="col-12 text-center">{{"No Data Found" | translate}}</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="data-list-pagination border border-bottom-0 border-left-0 border-right-0 row-striped">
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="second-element" *ngIf="entityCount>0">{{"Showing" | translate}} {{entitystart}} {{"to" | translate}} {{entityend}} {{"of" | translate}} {{entityCount}} {{"entries" | translate}}</p>
+      </div>
+      <div class="col-sm-8">
+        <pagination-controls style="float:right;"
+        previousLabel="{{'Previous' | translate}}"
+        nextLabel="{{'Next' | translate}}"
+        (pageChange)="pageChanged($event)" #api></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-footer></app-footer>

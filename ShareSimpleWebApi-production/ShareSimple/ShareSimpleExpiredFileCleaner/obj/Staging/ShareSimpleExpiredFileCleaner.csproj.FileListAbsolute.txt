@@ -1,0 +1,42 @@
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\ShareSimpleExpiredFileCleaner.exe.config
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\ShareSimpleExpiredFileCleaner.exe.manifest
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\ShareSimpleExpiredFileCleaner.application
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\ShareSimpleExpiredFileCleaner.exe
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Microsoft.Azure.KeyVault.Core.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Microsoft.WindowsAzure.Storage.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Newtonsoft.Json.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\System.Configuration.ConfigurationManager.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\System.Security.AccessControl.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\System.Security.Permissions.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\System.Security.Principal.Windows.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Microsoft.Azure.KeyVault.Core.xml
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Microsoft.WindowsAzure.Storage.pdb
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Microsoft.WindowsAzure.Storage.xml
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Newtonsoft.Json.xml
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.csprojAssemblyReference.cache
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.csproj.CoreCompileInputs.cache
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.exe.manifest
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.application
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.csproj.CopyComplete
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.exe
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\ShareSimpleExpiredFileCleaner.exe.config
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\ShareSimpleExpiredFileCleaner.exe.manifest
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\ShareSimpleExpiredFileCleaner.application
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\ShareSimpleExpiredFileCleaner.exe
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Microsoft.Azure.KeyVault.Core.dll
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Microsoft.WindowsAzure.Storage.dll
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Newtonsoft.Json.dll
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\System.Configuration.ConfigurationManager.dll
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\System.Security.AccessControl.dll
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\System.Security.Permissions.dll
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\System.Security.Principal.Windows.dll
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Microsoft.Azure.KeyVault.Core.xml
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Microsoft.WindowsAzure.Storage.pdb
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Microsoft.WindowsAzure.Storage.xml
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\bin\Staging\Newtonsoft.Json.xml
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.csprojAssemblyReference.cache
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.csproj.CoreCompileInputs.cache
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.exe.manifest
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.application
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.csproj.CopyComplete
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\ShareSimpleExpiredFileCleaner\obj\Staging\ShareSimpleExpiredFileCleaner.exe

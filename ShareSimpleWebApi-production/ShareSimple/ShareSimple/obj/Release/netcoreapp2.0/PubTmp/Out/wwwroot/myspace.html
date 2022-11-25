@@ -1,0 +1,628 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="-1" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="timestamp">
+
+    <title>Connectid Mail</title>
+    <base href="/">
+    <link rel="icon" type="image/x-icon" href="../assets/ss_logo.png">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.min.css">
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css">
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.0/css/fabric.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link href="AddinsContent/ssaddins.css?v=879D49EA-D017-4EBC-9598-5631CAC77814" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/js/fabric.min.js"></script>
+    <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="AddinsContent/underscore-min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <script type="text/javascript" src="AddinsContent/StorageLibrary.js"></script>
+    <script type="text/javascript" src="AddinsContent/Utility.js?v=280D174F-412E-47B7-895D-17B523FDA214"></script>
+    <script type="text/javascript" src="AddinsContent/ajaxprovider.js?v=280D174F-412E-47B7-895D-17B523FDA214"></script>
+    <script type="text/javascript" src="AddinsContent/ssaddins.js?v=280D174F-412E-47B7-895D-17B523FDA214"></script>
+
+    <script type="text/javascript">
+        function GetCode(code) {
+            CompleteAuthentication(code);
+        }
+    </script>
+    <script type="text/javascript">
+        $.fn.extend({
+            filedrop: function (options) {
+                var defaults = {
+                    callback: null
+                }
+                options = $.extend(defaults, options)
+                return this.each(function () {
+                    var files = []
+                    var $this = $(this)
+
+                    // Stop default browser actions
+                    $this.bind('dragover dragleave', function (event) {
+                        event.stopPropagation()
+                        event.preventDefault()
+                    })
+
+                    // Catch drop event
+                    $this.bind('drop', function (event) {
+                        // Stop default browser actions
+                        event.stopPropagation()
+                        event.preventDefault()
+
+                        // Get all files that are dropped
+                        files = event.originalEvent.target.files || event.originalEvent.dataTransfer.files
+                        //if (stopdrag || files.length > 1) {
+                        //    return false;
+                        //}
+                        // Convert uploaded file to data URL and pass trought callback
+                        if (options.callback) {
+                            for (i = 0; i < files.length; i++) {
+                                var reader = new FileReader()
+                                reader.onload = function (event) {
+                                    options.callback(event.target.result)
+                                }
+                                uploadFile(files[i]);
+                            }
+                        }
+                        //uploadFile(files[0]);
+                        return false
+                    })
+                })
+            }
+        });
+    </script>
+    <script type="text/x-jquery-tmpl" id="actionList">
+        <div class="ms-Grid-row pt-3  actionList">
+            <div class="ms-Grid-col ms-sm10 ms-md10">
+                <button type="button" class="btn btn-outline-primary btn-lg btn-block sharebutton" onclick="showShareFileContainer()">
+                    <img class="actionlogo" src="../../../assets/icon_share_files.png">
+                    <span class="pl-2">${getLanguage("Share data")}</span>
+                </button>
+            </div>
+        </div>
+        <div class="ms-Grid-row pt-3  actionList">
+            <div class="ms-Grid-col ms-sm10 ms-md10">
+                <button class="btn btn-outline-primary btn-lg btn-block" onclick="showRequestDataContainer()">
+                    <img class="actionlogo" src="../../../assets/icon_request_data.png">
+                    <span class="pl-2">${getLanguage("Request data")}</span>
+                </button>
+            </div>
+        </div>
+    </script>
+    <!------------------------  registration page -------------------->
+    <script type="text/x-jquery-tmpl" id="welcomeForRegistration">
+        <div class="ms-Grid-row pt-4">
+            <div class="ms-Grid-row heading ms-textAlignCenter">
+                <span>${getLanguage("Welcome to Connectid Mail")}</span>
+            </div>
+            <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter welcomemsg" style="margin: 30px 0px 25px; ">
+                <p>${getLanguage("Connectid Mail helps you send and collect data quickly, simply, and securely with the proper consent.")}</p>
+                <p>${getLanguage("If you are an admin, you'll be able to start using Connectid Mail right away. If not, by selecting \"Continue\", you will request that your administrator activates your account.")}</p>
+                <p>${getLanguage("Click continue to get started.")}</p>
+            </div>
+        </div>
+        <div class="ms-Grid-row ms-textAlignCenter">
+            <a id="disableanchor" onclick="OpenAuthenticationWindow()" class="ms-Button">
+                <span class="ms-Button-label">${getLanguage("Continue")}</span>
+            </a>
+        </div>
+    </script>
+    <script type="text/x-jquery-tmpl" id="registrationPage">
+        <div class="ms-Grid-row pt-2">
+            <form [formGroup]="registrationForm" id="registrationForm">
+                <div class="ms-Grid-col ms-sm12 ms-md12 pt-1 ms-textAlignCenter">
+                    <img style="height:42px;" src="assets/ss_logo.png" />
+                </div>
+                <!--<div class="ms-Grid-col ms-sm12 ms-md12 pt-1 ms-textAlignCenter">
+                    <b style="font-size:22px">Connectid Mail</b>
+                </div>-->
+                <div class="ms-Grid-col ms-sm12 ms-md12 pt-2 ms-textAlignCenter">
+                    ${signUpHeader}
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+                    <div class="ms-TextField">
+                        <label class="ms-Label is-required">${getLanguage("Company name")}</label>
+                        <input id="txtcompany" class="ms-TextField-field" type="text" value="" placeholder="">
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+                    <div class="ms-TextField">
+                        <label class="ms-Label">${getLanguage("Website")}</label>
+                        <input id="txtwebSite" class="ms-TextField-field" type="text" value="" placeholder="">
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm5 pt-1">
+                    <div class="ms-TextField">
+                        <label class="ms-Label is-required">${getLanguage("Code")}</label>
+                        <input id="txtCountryCode" class="ms-TextField-field country-code" type="text" value="+" placeholder="">
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm7 pt-1">
+                    <div class="ms-TextField">
+                        <label class="ms-Label is-required">${getLanguage("Phone")}</label>
+                        <input id="txtphone" class="ms-TextField-field" type="number" value="" placeholder="">
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+                    <div class="ms-TextField">
+                        <label class="ms-Label is-required">${getLanguage("Address")}</label>
+                        <textarea id="txtaddress" class="ms-TextField-field" rows="2" value="" placeholder=""></textarea>
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm6 pt-1">
+                    <div class="ms-TextField">
+                        <label class="ms-Label is-required">${getLanguage("Postalcode")}</label>
+                        <input id="txtpostalCode" class="ms-TextField-field" type="text" value="" style="min-width: initial;">
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm6 pt-1">
+                    <div class="ms-TextField">
+                        <label class="ms-Label is-required">${getLanguage("City")}</label>
+                        <input id="txtcity" class="ms-TextField-field" type="text" value="" style="min-width: initial;">
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+                    <div class="ms-TextField">
+                        <label class="ms-Label is-required">${getLanguage("Country")}</label>
+                        <select class="form-control form-control-sm" id="ddlCountryList">
+                            <option value="">${getLanguage("Select Country")}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+                    <div class="ms-TextField">
+                        <label class="ms-Label">${getLanguage("Promotion code")}</label>
+                        <input id="txtPromotionCode" class="ms-TextField-field" type="text" value="" placeholder="">
+                    </div>
+                </div>
+                <div class="ms-MessageBar ms-MessageBar--error" id="alertmsg" style="display: none;">
+                    <div class="ms-MessageBar-content">
+                        <div class="ms-MessageBar-icon">
+                            <i class="ms-Icon ms-Icon--ErrorBadge"></i>
+                        </div>
+                        <div class="ms-MessageBar-text" id="alertmsgtxt">
+                        </div>
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md12 pt-2 text-right" id="regConfirmButton">
+                    <img class="loadingimage" src="../../../assets/loading.gif">
+                    <input type="button" onclick="registrationSubmit()" class="ms-Button ms-Button--primary float-right" value="${getLanguage('Confirm')}" style="color: white;" />
+                </div>
+            </form>
+        </div>
+    </script>
+
+    <script type="text/x-jquery-tmpl" id="companyRegistrationSuccessPage">
+        <div class="ms-Grid-row pt-4">
+            <div class="ms-Grid-col ms-sm12 heading ms-textAlignCenter">
+                <span>
+                    ${getLanguage("Registration Successful")}
+                </span>
+            </div>
+            <div class="ms-Grid-col ms-sm12 ms-textAlignCenter welcomemsg" style="margin: 30px 0px 25px; ">
+                <p>
+                    ${companyRegistrationSuccessMessage1}
+                </p>
+                <p>
+                    {{html getLanguage("Your account has been activated and is ready to use right away. To get the most out of Connectid Mail, see <a href='https://www.safeonline.eu/mail/resources' target='_blank' style='display:inline-block'>video guides</a> for help.")}}
+                </p>
+            </div>
+        </div>
+        <div class="ms-Grid-row ms-textAlignCenter">
+            <div class="ms-Grid-col ms-sm12">
+                <a onclick="LoadView('actionList', {})" class="ms-Button">
+                    <span class="ms-Button-label">${getLanguage("Get Started")}</span>
+                </a>
+            </div>
+        </div>
+    </script>
+    <!------------- share item start------------------------->
+
+    <script type="text/x-jquery-tmpl" id="fileBrowseDiv">
+
+        <div class="ms-Grid-row" id="browseblock">
+            <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter dropzone" id="dropzone">
+                <div class="ms-Grid-row pt-1">
+                    <div class="pt-1">
+                        <img class="actionlogo" src="../../../assets/icon_upload_to_cloud.png">
+                    </div>
+                    <div class="dragstyle pt-1">${getLanguage("Drag files here")}</div>
+                    <div class="orstyle">${getLanguage("or")}</div>
+                </div>
+
+                <div class="ms-Grid-row pt-1 pb-3">
+                    <label class="ms-Button ms-Button--primary">
+                        <input type="file" multiple onchange="onFileChange(event)" value="Browse files" />
+                        <span class="ms-Button-label">${getLanguage("Browse files")}</span>
+                    </label>
+                </div>
+            </div>
+            <div class="ms-Grid-col ms-sm12 ms-textAlignCenter text-add-link">
+                <a onclick="showWrittenMessageForm();">
+                    <span class="ms-Icon ms-Icon--PageAdd"></span>${getLanguage("Add secure message")}
+                </a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-jquery-tmpl" id="sharedFileListContainer">
+        {{if files.length>0}}
+        <div class="pt-2" id="uploadedfilelistdiv">
+            <div id="sharelistdiv">
+            </div>
+        </div>
+        {{/if}}
+    </script>
+    <script type="text/x-jquery-tmpl" id="sharedFileList">
+        <div class="ms-Grid-row pt-2 filerow">
+            <span title="${file.name}">${getFormatedFilename(file.name)}</span>
+
+            <span style="float: right;cursor: pointer; opacity:.6;">
+                {{if uploaded !='uploading' }}
+                <img onclick="removefile('${id}')" class="checkicon" src="../../../assets/close.png">
+                {{/if}}
+            </span>
+            {{if file.messageContent}}
+            <span onclick="editTextFile('${id}')" class="ms-Icon ms-Icon--Edit file-edit"></span>
+            {{/if}}
+            <span class="uploadedsign">
+                {{if uploaded =='uploaded' }}
+                <img class="checkicon" src="../../../assets/icon_check.png">
+                {{else uploaded =='uploading' }}
+                <img class="sharefileloadingimage" src="../../../assets/loading.gif">
+                {{else}}
+                <span class="failed" title="${uploaded}">failed</span>
+                {{/if}}
+            </span>
+        </div>
+
+    </script>
+
+    <script type="text/x-jquery-tmpl" id="showViewDownloadContainer">
+        {{if files.length>0}}
+        <div class="ms-Grid-row pt-3 pb-3" id="viewdownloaddiv">
+            <div class="ms-sm12 ms-md12 ms-textAlignCenter">
+                <div class="viewdownloaderheader"> ${getLanguage("Would you like to allow the receiver to download the files or view only")}</div>
+                <div class="radio-container">
+                    <div class="form-check pt-2">
+                        <label class="form-check-label">
+                            <input name="downloadview" class="form-check-input" onchange="checkchange()" type="radio" checked value="download" />
+                            ${getLanguage("Download (all files)")}
+                        </label>
+                    </div>
+                    <div class="form-check pt-2">
+                        <label class="form-check-label">
+                            <input name="downloadview" class="form-check-input" onchange="checkchange()" type="radio" value="view" />
+                            ${getLanguage("View only (only PDF, word, excel, powerpoint, image, txt files)")}
+                        </label>
+                    </div>
+                </div>
+                <div class="ms-MessageBar ms-MessageBar--error" id="alertmsg" style="display: none;">
+                    <div class="ms-MessageBar-content">
+                        <div class="ms-MessageBar-icon">
+                            <i class="ms-Icon ms-Icon--ErrorBadge"></i>
+                        </div>
+                        <div class="ms-MessageBar-text" id="alertmsgtxt">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ms-Grid-row">
+            <div class="ms-Grid-col ms-md12" id="dvrecepient">
+                <h6>${getLanguage("SMS Authentication")}</h6>
+                <p>${getLanguage("Enabling SMS Passcode authentication adds an extra layer of security when accessing the shared documents.")}</p>
+                <div class="ms-Grid-row pb-2 pl-2" id="dvMobileRecipients"></div>
+
+                <div class="ms-Grid-row pb-2 pl-2" id="dvEmailRecepient"></div>
+
+                <div class="pt-2">
+                    <button onclick="addInsertLink()" class="ms-Button ms-Button--primary" id="insertlinkbtn" disabled>
+                        <span class="ms-Button-label">${getLanguage("Done")}</span>
+                    </button>
+                    <p class="form-note">${getLanguage("Include secure link in e-mail")}</p>
+                </div>
+            </div>
+        </div>
+
+        {{/if}}
+    </script>
+    <script id="tmplreceipient" type="text/x-jquery-tmpl">
+        <div class="pb-1" style="font-size: 12px; color: #333;margin-top:15px;">${field}</div>
+        {{each emails}}
+        <div class="chip">${emailAddress}</div>
+        {{/each}}
+    </script>
+    <script id="tmplrecepientMobile" type="text/x-jquery-tmpl">
+        {{if smsEnabled}}
+        <p>${getLanguage("Please enter the phone numbers of the respective recipients to verify their identity using the secure SMS passcode")}</p>
+        {{each(i, recipient) recipients}}
+        <div class="ms-Grid-row pt-2">
+            <div class="ms-Grid-col ms-sm12">
+                <div class="ms-TextField">
+                    <div class="ms-TextField-wrapper">
+                        <label class="ms-Label">${recipient.email}</label>
+                        <div class="ms-TextField-fieldGroup">
+                            <div class="ms-Grid-row">
+                                <div class="ms-Grid-col ms-sm5">
+                                    <input type="text" id="countryCode_${i}" rel="${recipient.email}" class="ms-TextField-field country-code" value="${recipient.countryCode}" onkeyup="validateCountryCode(this)" onchange="updateRecipientCountryCode(this)" />
+                                </div>
+                                <div class="ms-Grid-col ms-sm7">
+                                    <input type="text" id="mobileNumber_${i}" rel="${recipient.email}" class="ms-TextField-field mobile-number" value="${recipient.mobileNumber}" onkeypress="return isNumber(event)" onkeyup="validateMobile(this)" onchange="updateRecipientMobile(this)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        <a onclick="disableSmsAuthentication()">${getLanguage("Disable SMS passcode authentication")}</a>
+        {{else}}
+        <a onclick="enableSmsAuthentication()"><i class="ms-Icon ms-Icon--CellPhone"></i>${getLanguage("Enable SMS passcode authentication")}</a>
+        {{/if}}
+    </script>
+    <script id="tmplsharedatasuccessmsg" type="text/x-jquery-tmpl">
+        <div class="ms-Grid-row pt-4">
+            <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+                <span>${getLanguage("You're done. Go ahead and compose and send your email.")}</span>
+            </div>
+        </div>
+    </script>
+
+    <!--------------------------- Request data block ----------------------------->
+    <script id="tmplrequestDataBlock" type="text/x-jquery-tmpl">
+        <div class="ms-Grid-row">
+            <div class="ms-Grid-col ms-sm12 ms-md12">
+                <div _ngcontent-c4="" class="ms-textAlignCenter" style="height: 20px;"></div>
+                <div class="ms-textAlignCenter requestheader pt-1 heading">${getLanguage("Request data")}</div>
+                <div class="ms-textAlignCenter requesttitle pt-2">
+                    ${getLanguage("You may request files or specific pieces of information using the options below")}
+                </div>
+            </div>
+        </div>
+        <div class="ms-Grid-row pt-4">
+            <div class="ms-Grid-col ms-sm12 ms-md12">
+                <form [formGroup]="requestDataForm">
+                    <div formArrayName="requestDataList" class="well well-lg">
+                        <div *ngFor="let data of requestDatas.controls; let i=index" id="requestDataDiv">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="ms-Grid-row pt-2">
+            <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+                <button onclick="addRequestDatas()" class="ms-Button ms-Button--small addanotheritem">
+                    <span class="ms-Button-label">${getLanguage("Request another item")}</span>
+                </button>
+            </div>
+        </div>
+        <div class="ms-Grid-row pt-3">
+            <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+                <button onclick="uploadrequestdata()" class="ms-Button ms-Button--primary" id="insertlinkbtn" style="padding: 8px 50px 12px;height: 40px;">
+                    <span class="ms-Button-label">${getLanguage("Continue")} →</span>
+                </button>
+            </div>
+        </div>
+        <div class="ms-MessageBar ms-MessageBar--error" id="alertmsg" style="display: none;">
+            <div class="ms-MessageBar-content">
+                <div class="ms-MessageBar-icon">
+                    <i class="ms-Icon ms-Icon--ErrorBadge"></i>
+                </div>
+                <div class="ms-MessageBar-text" id="alertmsgtxt">
+                </div>
+            </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pb-4">
+            <div class="ms-Grid-row pt-3 pb-2 pl-2" id="dvrecepient">
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-jquery-tmpl" id="tmplrequestdata">
+        <div class="requestitem" id="requestItem_${requestcount}">
+            {{if requestcount > 0}}
+            <span style="float: right;cursor: pointer;">
+                <img onclick="removeRequestFile('${requestcount}')" class="checkicon" src="../../../assets/close.png">
+            </span>
+            {{/if}}
+            <div class="form-group">
+                <input onfocus="showmessage('')" id="fieldName_${requestcount}" type="text" class="form-control form-control-sm" placeholder="${getLanguage('What piece of info do you need?')}">
+            </div>
+            <div class="form-group">
+                <select formControlName="fieldType" class="form-control form-control-sm" onchange="showmessage('')">
+                    <option value="">${getLanguage("Select types of entry")}</option>
+                    <option value="inputbox">${getLanguage("Input box")}</option>
+                    <option value="textarea">${getLanguage("Text area")}</option>
+                    <option value="uploadfile">${getLanguage("Upload file")}</option>
+                </select>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-jquery-tmpl" id="inactiveview">
+        <div class="ms-Grid-row heading ms-textAlignCenter">
+            <span>${getLanguage("Your account is not active")}</span>
+        </div>
+        <div class="ms-Grid-row pt-4">
+            <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+                <span class="welcomemsg">
+                    ${getLanguage("Connectid Mail requires that an administrator activate each new user account. An email regarding this has been send to your administrator.")}
+                </span>
+            </div>
+        </div>
+        <div class="ms-Grid-row pt-4">
+            <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+                <span class="welcomemsg">
+                    ${getLanguage("You will be informed by e-mail once your account is active.")}
+                </span>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-jquery-tmpl" id="companyInactiveView">
+        <div class="ms-Grid-row heading ms-textAlignCenter">
+            <span>${getLanguage("Account has been deactivated")}</span>
+        </div>
+        <div class="ms-Grid-row pt-4">
+            <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+                <p class="welcomemsg">
+                    ${getLanguage("We are sorry, but your account has been deactivated. Your account is part of a subscription that has expired.")}
+                    <br /><br />
+                    ${getLanguage("Please contact your administrator for further information.")}
+                    <br /><br />
+                    ${getLanguage("For information on how to subscribe, contact")}&nbsp;<a href="mailto:compliant@safeonline.dk">compliant@safeonline.dk</a>.
+                </p>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-jquery-tmpl" id="usermissmatchtmpl">
+        <div class="missingAcnt ms-Grid-row">
+            <div class="ms-Grid-row pt-4">
+                <div class="ms-Grid-row heading ms-textAlignCenter">
+                    <span id="spheading">${getLanguage("Couldn't sign you in")}</span>
+                </div>
+                <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter welcomemsg" style="margin: 30px 0px 25px; ">
+                    <p>${getLanguage("Sorry, we are having trouble verifying your user certificate. Please confirm the following:")}</p>
+                    <ul style="text-align: justify;">
+                        <li> ${getLanguage("You are not signed into another Office 365 user using the Internet Explorer browser")}.</li>
+                        <li> ${getLanguage("You have not used the keep me signed in option for another Office 365 user account in the Internet Explorer browser")}.</li>
+                    </ul>
+                    <p>${getLanguage("Once you have confirmed the previous steps, click on the")} "<strong>${getLanguage("Continue")}</strong>" ${getLanguage("button to proceed to Connectid Mail")}.</p>
+                </div>
+            </div>
+            <div class="ms-Grid-row ms-textAlignCenter">
+                <a id="disableanchor" onclick="OpenAuthenticationWindow()" class="ms-Button">
+                    <span class="ms-Button-label">${getLanguage("Continue")}</span>
+                </a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-jquery-tmpl" id="writemessagemodaltmpl">
+        <div class="ms-Grid-row">
+            <input type="hidden" id="hfMessageId" value="${id}" />
+            <input type="hidden" id="hfFileName" value="${fileName}" />
+            <div class="ms-Grid-col ms-sm12">
+                <div class="ms-TextField">
+                    <div class="ms-TextField-wrapper">
+                        <label class="ms-Label">${getLanguage("Message Title")}</label>
+                        <div class="ms-TextField-fieldGroup">
+                            <input type="text" id="writtenMessageTitle" onkeyup="validateMessageTitle()" class="ms-TextField-field" placeholder="${getLanguage('Give a title for the message')}" value="${messageTitle}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="ms-TextField ms-TextField--multiline">
+                    <div class="ms-TextField-wrapper">
+                        <label class="ms-Label">${getLanguage("Message")}</label>
+                        <div class="ms-TextField-fieldGroup">
+                            <textarea id="writtenMessage" class="ms-TextField-field" onkeyup="validateMessageContent()" placeholder="${getLanguage('Write your message here...')}">${messageContent}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <p class="form-note">${getLanguage("Your message will be attached as a (.txt) file")}</p>
+            </div>
+        </div>
+    </script>
+</head>
+<body>
+    <div class="ms-Grid">
+        <div class="ms-Grid-row">
+            <div id="backIcon" onclick="back()" style="display: none;">
+                <i aria-hidden="true" class="ms-Icon ms-Icon--ChromeBack backiconcolor"></i>
+                <span></span>
+            </div>
+        </div>
+        <div class="ms-Grid-row">
+            <div id="divLoading" class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter" style="display: none;">
+                <img src="../../../assets/loading.gif">
+            </div>
+        </div>
+        <div id="viewbody">
+        </div>
+    </div>
+    <div id="addinsfooter">
+        <div class="ms-Grid-row pl-3" id="safety-info">
+            <div class="ms-Grid-col ms-sm12">
+                <p id="safety-text">Keep your own personal data safe.</p>
+                <a id="safety-link" href="https://www.safeonline.eu/safeprofile/overview" target="_blank">Find out how<span class="ms-Icon ms-Icon--ChromeBackMirrored"></span></a>
+            </div>
+        </div>
+        <div class="addins-footer-links">
+            <div class="ms-Grid-row pl-3">
+                <div onclick="OpenAdminPage(this)" class="float-left" id="myfolderButton" style="display: none;">
+                    <a style="text-decoration: none;">
+                        <img class="admin" src="assets/icon_folder.png">
+                        <span></span>
+                        <span placement="bottom-left" id="recentExpiredFileCount" title="Some of the requested/received files are about to expire. Please take actions on them before they are deleted."
+                              class="red-text badge-notify"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="ms-Grid-row  pl-3">
+                <div onclick="OpenAdminPage(this)" id="adminButton" style="display: none;">
+                    <a style="text-decoration: none;">
+                        <img class="admin" src="assets/icon_admin.png">
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+            <div class="ms-Grid-row pl-3">
+                <div id="helprow">
+                    <a style="text-decoration: none;" id="helpResourceLink" href="https://www.safeonline.eu/mail/resources" target="_blank">
+                        <img class="admin" src="assets/help-icon.png">
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+            <div class="ms-Grid-row pl-3 logoutblock" style="display: none;">
+                <a onclick="logout()">
+                    <img src="assets/icon_logout.png">
+                    <span>Sign out</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="sharesimpleModal" tabindex="-1" role="dialog" aria-labelledby="sharesimpleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sharesimpleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button id="cancel" type="button" class="ms-Button ms-Button--default" data-dismiss="modal">Cancel</button>
+                    <button id="save" type="button" class="ms-Button ms-Button--primary" onclick="convertTextToFile()">Add Message<span class="ms-Icon ms-Icon--ChromeBackMirrored"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

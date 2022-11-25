@@ -1,0 +1,20 @@
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Debug\DataBox.Push.exe.config
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Debug\DataBox.Push.exe
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Debug\DataBox.Push.pdb
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Debug\Newtonsoft.Json.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Debug\Newtonsoft.Json.xml
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Debug\DataBox.Push.csprojAssemblyReference.cache
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Debug\DataBox.Push.csproj.CoreCompileInputs.cache
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Debug\DataBox.Push.csproj.CopyComplete
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Debug\DataBox.Push.exe
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Debug\DataBox.Push.pdb
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Debug\DataBox.Push.exe.config
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Debug\DataBox.Push.exe
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Debug\DataBox.Push.pdb
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Debug\Newtonsoft.Json.dll
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Debug\Newtonsoft.Json.xml
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Debug\DataBox.Push.csprojAssemblyReference.cache
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Debug\DataBox.Push.csproj.CoreCompileInputs.cache
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Debug\DataBox.Push.csproj.CopyComplete
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Debug\DataBox.Push.exe
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Debug\DataBox.Push.pdb

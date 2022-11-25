@@ -1,0 +1,429 @@
+﻿.heading {
+    font-weight: 500;
+    font-size: 30px;
+    padding-top: 20px;
+    color: #575757;
+    line-height: 1.13;
+}
+
+
+.admin {
+    height: 20px;
+    width: 20px;
+    padding-bottom: 2px;
+}
+
+.badge-notify {
+}
+
+.badge {
+}
+
+.sharesimplelogo {
+    height: 30px;
+    width: 30px;
+    padding-top: 10px;
+}
+
+.actionlogo {
+    height: 20px;
+    width: 20px;
+}
+
+
+.sharebutton {
+    padding-left: 0px;
+}
+
+.requestbutton {
+    padding-right: 0px;
+}
+
+/*.actionlogo {
+    height: 25px;
+    width: 25px;
+}*/
+
+.dragstyle {
+    font-size: 16px;
+    line-height: normal;
+    color: #333333;
+}
+
+.orstyle {
+    color: gray;
+    font-size: 12px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.uploadedsign {
+    float: right;
+    padding-right: 10px;
+    color: #0078d7
+}
+
+.failed {
+    float: right;
+    padding-right: 10px;
+    color: red;
+}
+
+.filerow {
+    font-size: 13px;
+    color: #575757;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+}
+
+    .filerow:last-child {
+        border-bottom: none;
+    }
+
+input#txtphone {
+    min-width: 100px;
+}
+
+.checkicon {
+    height: 11px;
+    width: 11px;
+}
+
+.sharefileloadingimage {
+    height: 25px;
+    width: 30px;
+}
+
+.loadingimage{
+    height: 32px;
+    display:none;
+}
+
+.drop-zone {
+    height: auto !important;
+    border: 2px dotted gray !important;
+}
+
+#alertmsg {
+    font-size: 12px;
+    color: red;
+    text-align: left;
+    width: 100%;
+    margin-top: 10px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+#divLoading img {
+    width: 40px;
+}
+
+#browseblock .dropzone {
+    height: 196px;
+    border-radius: 10px;
+    border: dashed 2px #ccc;
+    background-color: #fbfbfb;
+}
+
+    #browseblock .dropzone img {
+        width: auto;
+        height: 32px;
+        margin-bottom: 12px;
+        margin-top: 25px;
+    }
+
+#addinsfooter {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+    #addinsfooter .addins-footer-links {
+        padding: 10px 2px 0px;
+        background-image: linear-gradient(to top, #f8f8f8, #f1f1f1);
+    }
+
+    #addinsfooter img {
+        width: 16px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    #addinsfooter a {
+        font-size: 12px;
+        color: #0080ff;
+        cursor: pointer;
+    }
+
+    #addinsfooter #safety-info {
+        text-align: center;
+        margin-bottom: 10px;
+        display: none;
+    }
+
+        #addinsfooter #safety-info p {
+            color: #d5d5d5;
+            margin-bottom: 0;
+            font-size: 12px;
+        }
+
+        #addinsfooter #safety-info a {
+            color: #0080ff;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+            #addinsfooter #safety-info a:hover {
+                opacity: 0.7;
+            }
+
+            #addinsfooter #safety-info a .ms-Icon {
+                top: 4px;
+            }
+/*#viewbody*/
+.btn-outline-primary {
+    color: black !important;
+}
+
+    .btn-outline-primary:hover {
+        color: white !important;
+    }
+
+#viewbody {
+    padding: 20px;
+    margin-bottom: 120px;
+}
+
+    #viewbody .requesttitle {
+        font-size: 16px;
+        color: #333;
+        line-height: normal;
+    }
+
+#dvrecepient {
+    text-align: center;
+}
+
+    #dvrecepient .ms-Icon {
+        top: 2px;
+        padding-right: 5px;
+    }
+
+.chip {
+    display: inline-block;
+    height: 22px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 25px;
+    background-color: #dedede;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 10px;
+}
+
+#viewdownloaddiv {
+    float: left;
+}
+
+    #viewdownloaddiv .ms-textAlignCenter {
+        color: #333;
+    }
+
+        #viewdownloaddiv .ms-textAlignCenter input {
+            position: relative;
+            top: 2px;
+        }
+
+        #viewdownloaddiv .ms-textAlignCenter label {
+            font-size: 14px;
+        }
+
+.radio-container {
+    text-align: left;
+    margin-left: calc(50% - 75px);
+}
+
+.logoutblock span {
+}
+
+.logoutblock img {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
+#backIcon {
+    color: #0080ff;
+    background-image: linear-gradient(to top, #f8f8f8, #f1f1f1);
+    padding: 6px 0px 5px 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+    #backIcon span {
+        position: relative;
+        top: -3px;
+        left: 2px;
+    }
+
+#uploadedfilelistdiv {
+    float: left;
+    width: 100%;
+    padding: 8px;
+}
+
+#insertlinkbtn {
+    border-radius: 4px;
+    /*background-color: #0080ff;*/
+}
+
+    #insertlinkbtn span {
+        color: #FFF;
+    }
+
+    #insertlinkbtn:disabled span {
+        color: #999;
+    }
+
+.ms-Button {
+    border-radius: 4px;
+}
+
+    .ms-Button.ms-Button--primary {
+        background: #0080ff;
+        border-color: #0080ff;
+        color: #fff;
+    }
+
+        .ms-Button.ms-Button--primary .ms-Icon {
+            padding-left: 5px;
+            top: 4px;
+        }
+
+#viewdownloaddiv .viewdownloaderheader {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.welcomemsg {
+    font-size: 16px;
+    color: #333;
+    line-height: normal;
+}
+
+.actionList .ms-Grid-col {
+    margin: 0px auto;
+    float: none;
+}
+
+#disableanchor {
+    padding: 5px 40px;
+}
+
+#browseblock .ms-Button {
+    padding: 8px 10px 12px;
+    height: 40px;
+}
+
+#addinsfooter a span {
+    position: relative;
+    top: -4px;
+    left: 1px;
+}
+
+.addanotheritem {
+    padding: 8px 14px 8px 23px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.missingAcnt ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1em;
+    text-align: left;
+    margin: 30px 0px;
+}
+
+    .missingAcnt ul li:before {
+        display: inline-block;
+        content: "-";
+        width: 1em;
+        margin-left: -1em;
+    }
+
+.missingAcnt p {
+    text-align: left;
+}
+
+#browseblock .text-add-link {
+    margin-top: 10px
+}
+
+#browseblock a {
+    cursor: pointer;
+    color: #0080ff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#browseblock .text-add-link a .ms-Icon {
+    padding-right: 5px;
+    top: 2px;
+}
+
+#browseblock h6 {
+    text-align: center
+}
+
+#browseblock p {
+    font-size: 12px;
+    text-align: center
+}
+
+#dvMobileRecipients a {
+    display: block;
+    text-align: center;
+}
+
+.ms-Icon {
+    position: relative;
+}
+
+.form-note {
+    font-size: 12px;
+}
+
+.file-edit {
+    float: right;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+#writtenMessage {
+    height: 85px;
+}
+
+.ms-TextField-field.error {
+    border-color: rgb(168, 0, 0);
+}
+
+.country-code.ms-TextField-field {
+    min-width: 60px;
+}
+
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+}
+.ui-menu .ui-state-focus, .ui-menu .ui-state-active {
+    margin: 0;
+    border:none;
+}
+
+input.mobile-number {
+    min-width: 100px;
+}

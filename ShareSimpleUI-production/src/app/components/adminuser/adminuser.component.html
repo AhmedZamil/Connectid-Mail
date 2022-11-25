@@ -1,0 +1,182 @@
+<div class="container-fluid">
+  <div [formGroup]="filterForm">
+    <!-- <div class="row no-gutters pt-4 pb-3">
+      <div class="col-md-12 routeheader">
+        <i *ngIf="showGoBack" class="ms-Icon ms-Icon--ChromeBack backiconcolor gobackcomp" [routerLink]="['/superadmin/home']"></i>Home 
+      </div>
+    </div> -->
+
+    <div class="row no-gutters pt-4 pb-3">
+      <div class="col-md-10 routeheader">
+        {{"Users" | translate}}
+      </div>
+
+      <div class="col-md-2">
+        <button type="button" class="ms-Button ms-Button--primary float-right" (click)="openUserdialog()">
+          <span class="ms-Button-label">+ {{"Add User" | translate}}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="row pt-2 pb-4">
+      <div class="col-md-3">
+        <input formControlName="searchText" type="text" class="form-control form-control-sm"
+          placeholder="{{'Search' | translate}}...">
+      </div>
+      <div class="col-md-9" style="height: 20px;">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+    </div>
+  </div>
+
+  <!--data list-->
+  <div class="data-list-header border border-top-0 border-left-0 border-right-0">
+    <div class="row no-gutters">
+      <div class="col-sm-3">
+        {{"Name" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Type" | translate}}
+      </div>
+      <div class="col-sm-5">
+        {{"Email" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Created" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Status" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Action" | translate}}
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="users">
+    <div *ngFor="let rowdata of users | paginate: { itemsPerPage: displayLength, currentPage: currentPage }">
+      <div class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-3">
+              <span>{{rowdata.name}}</span>
+            </div>
+            <div class="col-sm-1">
+              {{rowdata.type ? 'Admin' : ''}}
+            </div>
+            <div class="col-sm-5">
+              {{rowdata.email}}
+            </div>
+            <div class="col-sm-1">
+              {{rowdata.createDate | date:'dd/MM/yyyy'}}
+            </div>
+            <div class="col-sm-1">
+              <i *ngIf="rowdata.isActive == true" title="check" style="color: #0078d7;font-size: 16px;cursor: pointer;"
+                class="fa fa-check"></i>
+            </div>
+            <div class="col-sm-1">
+              <i title="{{'Edit User'|translate}}" style="color: #0078d7;font-size: 16px;cursor: pointer;"
+                class="fa fa-pencil" (click)="openUserdialog(rowdata.id)"></i>
+              <i title="{{'Delete'|translate}}" style="color: #0078d7;font-size: 16px;cursor: pointer;"
+                class="fa fa-trash" (click)="openDeleteConfirmationDialog(rowdata.id)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="entityCount==0" class="data-list-row">
+      <div class="row">
+        <div class="col-12 text-center">No Data Found</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="data-list-pagination border border-bottom-0 border-left-0 border-right-0 row-striped">
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="second-element" *ngIf="entityCount>0">{{"Showing" | translate}} {{entitystart}} {{"to" | translate}}
+          {{entityend}} {{"of" | translate}} {{entityCount}}
+          {{"entries" | translate}}</p>
+      </div>
+      <div class="col-sm-8">
+        <pagination-controls style="float:right;" previousLabel="{{'Previous' | translate}}"
+          nextLabel="{{'Next' | translate}}" (pageChange)="pageChanged($event)" #api></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <div class="userdialog">
+    <div class="ms-Dialog ms-Dialog--blocking">
+      <div class="ms-Dialog-title">{{message}}</div>
+      <div *ngIf="showerror" class="ms-MessageBar ms-MessageBar--error ms-Grid-col ms-sm12 ms-md12">
+        <div class="ms-MessageBar-content">
+          <div class="ms-MessageBar-icon">
+            <i class="ms-Icon ms-Icon--ErrorBadge"></i>
+          </div>
+          <div class="ms-MessageBar-text">
+            {{"A user with this email already exists" | translate}}
+          </div>
+        </div>
+      </div>
+      <form [formGroup]="userForm">
+        <div class="ms-Grid-col ms-sm12 ms-md12">
+          <div class="ms-TextField">
+            <label class="ms-Label">{{"Name" | translate}}</label>
+            <input formControlName="name" class="ms-TextField-field" type="text" value="" placeholder="">
+          </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+          <div class="ms-TextField">
+            <label class="ms-Label">{{"Email" | translate}}</label>
+            <input formControlName="email" class="ms-TextField-field" type="text" value="" placeholder="">
+          </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+          <div class="form-group">
+            <label style="font-size: 13px;">{{"Type" | translate}}</label>
+            <select formControlName="type" class="form-control form-control-sm">
+              <option value=true>{{"Admin" | translate}}</option>
+              <option value=false>{{"User" | translate}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1 pb-4">
+          <div class="form-check">
+            <input formControlName="isActive" type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">{{"Set As Active" | translate}}</label>
+          </div>
+        </div>
+
+      </form>
+      <div class="ms-Dialog-actions">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+        <button type="button" [disabled]="userForm.invalid || loading"
+          (click)="!loading && userForm.valid && userSubmit()" class="ms-Button ms-Button--primary">
+          <span class="ms-Button-label">{{"Save" | translate}}</span>
+        </button>
+        <button type="button" (click)="dialogComponent.close()" class="ms-Button">
+          <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="deleteConfirmationDialog">
+    <div class="ms-Dialog ms-Dialog--blocking">
+      <div class="ms-Dialog-title">{{'Delete User' | translate}}</div>
+      <div class="ms-Dialog-content">
+        <p class="ms-Dialog-subText">{{'Are you sure to delete the user?' | translate}}</p>
+      </div>
+      <div class="ms-Dialog-actions">
+        <button type="button" (click)="userDelete()" class="ms-Button">
+          <span class="ms-Button-label">{{"Delete" | translate}}</span>
+        </button>
+        <button type="button" (click)="dialogComponent.close()" class="ms-Button">
+          <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

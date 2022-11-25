@@ -1,0 +1,30 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12 ms-md12">
+      <div class="ms-Grid-row pt-2 pl-2">
+        <div *ngIf="myfolderUrl!=''" class="float-left pr-3">
+          <a [href]="myfolderUrl" style="text-decoration: none;" target="_blank">
+            <img class="admin" src="../../../assets/icon_folder.png">
+            <span>{{"My folder" | translate}}</span>
+            <span *ngIf="alertcount>0" placement="bottom-left"
+              ngbTooltip="{{'Some of the requested/received files are about to expire. Please take actions on them before they are deleted.' | translate}}"
+              class="badge red-text badge-notify">{{alertcount}}</span>
+          </a>
+        </div>
+        <div *ngIf="isAdmin && adminUrl!=''" class="float-right pr-2">
+          <a [href]="adminUrl" style="text-decoration: none;" target="_blank">
+            <img class="admin" src="../../../assets/icon_admin.png">
+            <span>{{"Administration" | translate}}</span>
+          </a>
+        </div>
+        <i *ngIf="backcheck(this.location.path(true))" class="ms-Icon ms-Icon--ChromeBack backiconcolor"
+          (click)="back()" aria-hidden="true"></i>
+      </div>
+      <div class="ms-Grid-row ms-textAlignCenter pt-2">
+        <img class="sharesimplelogo" src="../../../assets/ss_logo.png">
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+
+</div>

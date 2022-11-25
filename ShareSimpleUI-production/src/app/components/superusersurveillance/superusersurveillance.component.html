@@ -1,0 +1,183 @@
+<div class="container-fluid">
+
+  <div class="row no-gutters pt-4 pb-3">
+    <div class="col-md-2 routeheader">
+      {{ "Surveillance" | translate }}
+    </div>
+    <div class="col-md-1 padding-zero" style="height: 20px;">
+      <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif" />
+    </div>
+  </div>
+  <fieldset class="search-container" style="border:1px inset #ccc;padding:5px;margin:0;">
+    <legend style="width:auto;padding: 0 8px;margin-bottom:0;font-size:inherit;">{{"Search" | translate}}</legend>
+    <div class="form-inline" [formGroup]="filterForm">
+      <div class="form-group">
+        <label for="top" style="width:70px;">{{"Top" | translate}}</label>
+        <select id="top" formControlName="maxResultCount" class="form-control form-control-sm">
+          <option value="0">{{ "All" | translate}}</option>
+          <option value="10">10</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+          <option value="500">500</option>
+          <option value="1000">1000</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="from">{{"Date" | translate}}</label>
+        <input id="from" type="date" formControlName="logTimeFrom" class="form-control form-control-sm date-picker" />
+        <label for="to" style="width:auto">-</label>
+        <input id="to" type="date" formControlName="logTimeTo" class="form-control form-control-sm date-picker" />
+      </div>
+      <div class="form-group">
+        <label for="logType">{{"Log Type" | translate}}</label>
+        <select id="logType" formControlName="messageType" class="form-control form-control-sm">
+          <option *ngFor="let item of messageTypes" [value]="item">{{item}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="action">{{"Action" | translate}}</label>
+        <select id="action" formControlName="actionName" class="form-control form-control-sm">
+          <option *ngFor="let item of actionTypes" [value]="item">{{item}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="severity">{{"Severity" | translate}}</label>
+        <select id="severity" formControlName="severity" class="form-control form-control-sm">
+          <option *ngFor="let item of severities" [value]="item.id">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="company">{{"Company" | translate}}</label>
+        <select id="company" formControlName="companyId" class="form-control form-control-sm">
+          <option *ngFor="let company of companies" [value]="company.id">{{company.name}}</option>
+        </select>
+      </div>
+    </div>
+  </fieldset>
+  <div class="col-md-4" [formGroup]="searchForm" style="padding:0;margin-top:5px;float:left;">
+    <input style="margin-top:5px;" formControlName="searchText" type="text" class="form-control form-control-sm" placeholder="{{ 'Search' | translate }}..." />
+  </div>
+  <div class="col-md-8" style="float:left;padding:0;">
+    <div class="data-list-pagination border border-bottom-0 border-left-0 border-right-0 row-striped">
+      <div class="row">
+        <div class="col-sm-4">
+          <p class="second-element" *ngIf="entityCount > 0">
+            {{ "Showing" | translate }} {{ entitystart }} {{ "to" | translate }}
+            {{ entityend }} {{ "of" | translate }} {{ entityCount }}
+            {{ "entries" | translate }}
+          </p>
+        </div>
+        <div class="col-sm-8">
+          <pagination-controls style="float:right;"
+                               previousLabel="{{ 'Previous' | translate }}"
+                               nextLabel="{{ 'Next' | translate }}"
+                               (pageChange)="pageChanged($event)"
+                               #api></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--data list-->
+  <table class="table table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th class="th-sm">{{ "Time" | translate }}</th>
+        <th class="th-sm">{{ "Log Type" | translate }}</th>
+        <th class="th-sm">{{ "Company" | translate }}</th>
+        <th class="th-sm">{{ "User" | translate }}</th>
+        <th class="th-sm">{{ "Action" | translate }}</th>
+        <th class="th-sm">{{ "Severity" | translate }}</th>
+        <th class="th-sm">{{ "Message" | translate }}</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="logs">
+      <tr *ngIf="entityCount == 0" class="data-list-row">
+        <td colspan="8">{{ "No Data Found" | translate }}</td>
+      </tr>
+      <tr [ngClass]="log.messageType"
+          *ngFor="let log of logs | paginate : { itemsPerPage: displayLength, currentPage: currentPage }">
+        <td class="wp-nr">
+          {{ log.logTime | date: "yyyy-MM-dd hh:mm:ss" }} <br />
+          <a href="#" (click)="openLogDetailDialog(log)" class="namelink btn-log-detail" style="cursor: pointer;">{{ "View Detail" | translate }}</a>
+        </td>
+        <td class="wp-nr">{{ log.messageType }}</td>
+        <td class="wp-nr">{{ log.companyName }}<br />{{ log.companyDomain }}</td>
+        <td class="wp-nr">{{ log.userName }}<br />{{ log.userEmail }}</td>
+        <td class="wp-nr">{{ log.actionName }}</td>
+        <td class="wp-nr">{{ log.severityName }}</td>
+        <td>{{ log.logMessage }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="data-list-pagination border border-bottom-0 border-left-0 border-right-0 row-striped">
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="second-element" *ngIf="entityCount > 0">
+          {{ "Showing" | translate }} {{ entitystart }} {{ "to" | translate }}
+          {{ entityend }} {{ "of" | translate }} {{ entityCount }}
+          {{ "entries" | translate }}
+        </p>
+      </div>
+      <div class="col-sm-8">
+        <pagination-controls style="float:right;"
+                             previousLabel="{{ 'Previous' | translate }}"
+                             nextLabel="{{ 'Next' | translate }}"
+                             (pageChange)="pageChanged($event)"
+                             #api></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <div class="logdetaildialog">
+    <div class="ms-Dialog ms-Dialog--blocking" style="max-width: 1500px; width: 900px;">
+      <div class="ms-Dialog-title">
+        {{'Surveillance Detail' | translate}}
+        <i (click)="dialogComponent.close()" class="fa fa-close close-dialog-icon"></i>
+      </div>
+      <div *ngIf="logDetail" style="max-height: 70vh;overflow: auto;">
+        <div class="log-info-row"><span class="label">Id</span><span class="text">: {{ logDetail.id }}</span></div>
+        <div class="log-info-row"><span class="label">Time</span><span class="text">: {{ logDetail.logTime | date: "yyyy-MM-dd hh:mm:ss" }}</span></div>
+        <div *ngIf="logDetail.companyName" class="log-info-row"><span class="label">Company</span><span class="text">: {{ logDetail.companyName }} ({{ logDetail.companyDomain }})</span></div>
+        <div *ngIf="logDetail.userEmail" class="log-info-row"><span class="label">User</span><span class="text">: {{ logDetail.userName }} ({{ logDetail.userEmail }})</span></div>
+        <div class="log-info-row"><span class="label">Type</span><span class="text">: {{ logDetail.messageType }}</span></div>
+        <div class="log-info-row"><span class="label">Action</span><span class="text">: {{ logDetail.actionName }}</span></div>
+        <div class="log-info-row"><span class="label">Severity</span><span class="text">: {{ logDetail.severityName }}</span></div>
+        <div *ngIf="logDetail.logMessage" class="log-info-row">
+          <span class="label-long">Message</span>
+          <p class="text-long">{{ logDetail.logMessage }}</p>
+        </div>
+        <div *ngIf="logDetail.result" class="log-info-row">
+          <span class="label-long">Result</span>
+          <code class="text-long">{{ logDetail.result }}</code>
+        </div>
+        <div *ngIf="logDetail.moduleName || logDetail.subModuleName" class="log-info-row">
+          <span class="label-long">Module</span>
+          <p class="text-long">{{ logDetail.moduleName }}<br />{{ logDetail.subModuleName}}</p>
+        </div>
+        <div *ngIf="logDetail.machineName || logDetail.machineIP" class="log-info-row"><span class="label">Client Machine</span><span class="text">: {{ logDetail.machineName }}({{ logDetail.machineIP}})</span></div>
+        <div *ngIf="logDetail.entityName" class="log-info-row"><span class="label">Entity</span><span class="text">: {{ logDetail.entityName }}</span></div>
+        <div *ngIf="logDetail.oldObject" class="log-info-row">
+          <span class="label-long">Old Value</span>
+          <code class="text-long">{{ logDetail.oldObject }}</code>
+        </div>
+        <div *ngIf="logDetail.newObject" class="log-info-row">
+          <span class="label-long">New Value</span>
+          <code class="text-long">{{ logDetail.newObject }}</code>
+        </div>
+        <div *ngIf="logDetail.userAgent" class="log-info-row">
+          <span class="label-long">User Agent</span>
+          <p class="text-long">{{ logDetail.userAgent }}</p>
+        </div>
+        <div *ngIf="logDetail.appVersion" class="log-info-row"><span class="label">App Version</span><span class="text">: {{ logDetail.appVersion }}</span></div>
+      </div>
+      <div class="ms-Dialog-actions">
+        <button type="button" (click)="dialogComponent.close()" class="ms-Button">
+          <span class="ms-Button-label">{{"Close" | translate}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

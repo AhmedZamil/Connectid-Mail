@@ -1,0 +1,9 @@
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Release\DataBox.Push.exe.config
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Release\DataBox.Push.exe
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Release\DataBox.Push.pdb
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Release\Newtonsoft.Json.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\bin\Release\Newtonsoft.Json.xml
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Release\DataBox.Push.csproj.CoreCompileInputs.cache
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Release\DataBox.Push.csproj.CopyComplete
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Release\DataBox.Push.exe
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\DataBox.Push\obj\Release\DataBox.Push.pdb

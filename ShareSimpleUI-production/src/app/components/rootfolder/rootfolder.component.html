@@ -1,0 +1,102 @@
+<div class="container-fluid">
+  <div class="row no-gutters pt-4">
+    <div class="col-md-10 routeheader">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">{{"Folders" | translate}}</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-md-2">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+
+    <div class="col-md-9" style="height: 20px;">
+      <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+    </div>
+
+  </div>
+
+
+  <!--data list-->
+  <div class="data-list-header border border-top-0 border-left-0 border-right-0">
+    <div class="row no-gutters">
+      <div class="col-sm-6">
+        {{"Name" | translate}}
+      </div>
+      <div class="col-sm-3">
+        {{"Modified date" | translate}}
+      </div>
+      <div class="col-sm-3">
+        {{"Number of files" | translate}}
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="rootfolders">
+    <div class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <span class="namelink" style="cursor: pointer;" routerLink="/admin/{{companyId}}/sharedfolder">
+              <img class="folder" src="../../../assets/icon_shared_folder.png"> {{"Shared Folders" | translate}}
+            </span>
+          </div>
+          <div class="col-sm-3">
+            {{rootfolders.sharedFolders.modifiedDate | date}}
+          </div>
+          <div class="col-sm-3">
+            {{rootfolders.sharedFolders.noOfFiles}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <span class="namelink" style="cursor: pointer;" routerLink="/admin/{{companyId}}/folders">
+              <img class="folder" src="../../../assets/icon_user_folder.png"> {{"User Folders" | translate}}
+            </span>
+          </div>
+          <div class="col-sm-3">
+            {{rootfolders.userfolders.modifiedDate | date}}
+          </div>
+          <div class="col-sm-3">
+            {{rootfolders.userfolders.noOfFiles}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="(loggedInCompany && loggedInCompany.enabledTrustedLink) || (loggedInUser && loggedInUser.type===true)"
+      class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <span class="namelink" style="cursor: pointer;" routerLink="/admin/{{companyId}}/sharedfolder/tl">
+              <img class="folder" src="../../../assets/icon_trusted_link_folder.png"> {{"Trusted Links" | translate}}
+            </span>
+          </div>
+          <div class="col-sm-3">
+            {{rootfolders.trustedLinks.modifiedDate | date}}
+          </div>
+          <div *ngIf="loggedInCompany && loggedInCompany.enabledTrustedLink" class="col-sm-3">
+            {{rootfolders.trustedLinks.noOfFiles}}
+          </div>
+          <div *ngIf="loggedInCompany && !loggedInCompany.enabledTrustedLink" class="col-sm-3" style="color: brown;">
+            {{"Not Activated" | translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+</div>
+<app-footer></app-footer>

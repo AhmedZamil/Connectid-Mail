@@ -1,0 +1,3 @@
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\Sharesimpleaddin\obj\Debug\Sharesimpleaddin.csprojAssemblyReference.cache
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\Sharesimpleaddin\obj\Debug\Sharesimpleaddin.csproj.CoreCompileInputs.cache
+E:\iXora\Connectid Mail\CODE\ShareSimpleWebApi-production\ShareSimple\Sharesimpleaddin\obj\Debug\Sharesimpleaddin.csproj.CoreCompileInputs.cache

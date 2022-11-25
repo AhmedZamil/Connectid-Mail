@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>2e022700-3a3d-40cb-90c2-2958ff7e723a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Authorization\OfficeAuthorizationHandler.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.6" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+    <PackageReference Include="Spire.Office" Version="3.8.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc3" />
+    <PackageReference Include="Twilio" Version="5.28.2" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\PreviewDoc\compatibility.js" />
+    <None Include="wwwroot\assets\PreviewDoc\pdf.js" />
+    <None Include="wwwroot\assets\PreviewDoc\pdf.worker.js" />
+    <None Include="wwwroot\assets\PreviewDoc\pdfjsversion.js" />
+    <None Include="wwwroot\assets\PreviewDoc\plugin-viewer.js" />
+    <None Include="wwwroot\assets\PreviewDoc\text_layer_builder.js" />
+    <None Include="wwwroot\assets\PreviewDoc\ui_utils.js" />
+    <None Include="wwwroot\assets\PreviewDoc\webodf-debug.js" />
+    <None Include="wwwroot\assets\PreviewDoc\webodf.js" />
+    <None Include="wwwroot\assets\script\fabric.min.js" />
+    <None Include="wwwroot\assets\script\jquery-3.3.1.slim.min.js" />
+    <None Include="wwwroot\assets\script\myspace.bundle.js" />
+    <None Include="wwwroot\assets\script\Office.js" />
+    <None Include="wwwroot\assets\script\popper.min.js" />
+    <None Include="wwwroot\ShareSimple API Document_files\themedata.thmx" />
+  </ItemGroup>
+
+</Project>

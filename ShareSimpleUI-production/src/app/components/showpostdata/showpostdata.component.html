@@ -1,0 +1,134 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12 ms-md3">
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md6">
+      <div class="ms-Grid-row ms-textAlignCenter pt-5 companyname">
+        <app-header></app-header>
+      </div>
+
+      <div class="ms-Grid-row ms-textAlignCenter pt-2">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+
+      <div class="ms-Grid-row ms-textAlignCenter pt-2 pb-2">
+        {{"Shared Informations" | translate}}
+      </div>
+
+      <div *ngFor="let item of postdata" class="ms-Grid-row pt-3">
+        <div *ngIf="item.fieldType!='uploadfile'">
+          <span style="font-weight: 550;font-size: 16px;">{{item.fieldName}}</span>
+          <span class="float-right" style="font-size: 13px;">{{item.fieldValue}}</span>
+        </div>
+        <div *ngIf="item.fieldType=='uploadfile'">
+          <div style="font-weight: 550;font-size: 16px;">{{item.fieldName}}</div>
+
+          <div *ngFor="let fileitem of item.fieldValues" class="pt-3">
+            <span>{{fileitem.name}}</span>
+            <span class="float-right pr-2">
+              <button type="button" class="ms-Button ms-Button--small" (click)="openViewDialog(fileitem)">
+                <span class="ms-Button-label">{{"view" | translate}}</span>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ms-Grid-row pt-4">
+        <div *ngIf="saveFailed===false" class="ms-MessageBar ms-MessageBar--success">
+          <div class="ms-MessageBar-content">
+            <div class="ms-MessageBar-text">
+              {{"Data saved successfully" | translate}}
+            </div>
+          </div>
+        </div>
+
+        <span *ngIf="issaveddata==false" class="float-right">
+          <a style="text-decoration: none;cursor: pointer;" (click)="openDialog()" title="">
+            <span style="background-color: #0078d7;color: white;height: 32px;min-width: 80px;padding: 1px 10px 2px;">
+              {{"Save data" | translate}}
+            </span>
+          </a>
+        </span>
+      </div>
+
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md3">
+    </div>
+  </div>
+</div>
+
+<div class="docs-DialogExample-blocking">
+  <div class="ms-Dialog ms-Dialog--blocking">
+    <div class="ms-Dialog-content">
+      <div class="ms-Grid-row folderheadertop">
+        <div class="ms-Grid-col ms-sm12 ms-md12 text-center">
+          {{"Where would you like to save the data?" | translate}}
+        </div>
+
+        <div class="ms-Grid-col ms-sm12 ms-md12">
+          <span *ngIf="saveFailed" class="ms-message">{{"Failed to save data" | translate}}</span>
+        </div>
+
+      </div>
+      <div *ngIf="dataEntity && dataEntity.folderName!=''" class="ms-Grid-row pt-4 pb-1 folderheader">
+        <div class="ms-Grid-col ms-sm12 ms-md12">
+          {{"Your personal folder" | translate}}
+        </div>
+      </div>
+      <div *ngIf="dataEntity" [ngClass]="{'selected': folderId=='00000000-0000-0000-0000-000000000000'}"
+        (click)="selecteddata('00000000-0000-0000-0000-000000000000',true)"
+        class="ms-Grid-row foldername border ml-4 mr-4 pt-1 pb-1 border-left-0 border-right-0 border-top-0">
+        <div class="ms-Grid-col ms-sm12 ms-md12">
+          <span>
+            <img class="folder" src="../../../assets/icon_folder.png"> {{dataEntity.senderName}}
+          </span>
+        </div>
+      </div>
+
+      <div class="ms-Grid-row pt-4 pb-1">
+        <div class="ms-Grid-col ms-sm12 ms-md12 folderheader">
+          {{"Company shared folder" | translate}}
+        </div>
+      </div>
+
+      <ng-container *ngIf="userfolder">
+        <div *ngFor="let rowuser of userfolder">
+          <div [ngClass]="{'selected': folderId==rowuser.adminFolder.id}"
+            (click)="selecteddata(rowuser.adminFolder.id,false)"
+            class="ms-Grid-row foldername ml-4 mr-4 pt-1 pb-1 border border-left-0 border-right-0 border-top-0">
+            <div class="ms-Grid-col ms-sm12 ms-md12">
+              <span>
+                <img class="folder" src="../../../assets/icon_folder.png"> {{rowuser.adminFolder.folderName}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+    <div class="ms-Dialog-actions">
+      <button type="button" (click)="dialogComponent.close()" class="ms-Button">
+        <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+      </button>
+      <button type="button" [disabled]="folderId=='' || loading" (click)="(folderId!='') && !loading && savedata()"
+        class="ms-Button ms-Button--primary">
+        <span class="ms-Button-label">{{"Save" | translate}}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="viewfileDialog">
+  <div class="ms-Dialog ms-Dialog--blocking" style="max-width:100% !important;padding:5px;">
+    <div class="ms-Dialog-title" style="margin-bottom:5px;font-size:1em;">
+      <span>{{"View File" | translate}}</span>
+      <i style="float:right; cursor:pointer;margin:2px;" (click)="CloseViewDialog()"
+        class="ms-Icon ms-Icon--Cancel"></i>
+      <i style="float:right; cursor:pointer;margin:2px;" (click)="toggleDialogScreen()"
+        class="ms-Icon ms-Icon--FullScreen"></i>
+    </div>
+    <img class="docviewer-progress loadingimage" src="../../../assets/loading.gif">
+    <iframe [src]="viewFileUrl" (load)="iframeLoaded()" class="docviewer screen-normal" [class]="viewerClass"></iframe>
+  </div>
+</div>

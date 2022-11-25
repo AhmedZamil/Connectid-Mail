@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareSimple", "ShareSimple\ShareSimple.csproj", "{A04CBF74-B51D-4C47-B7D9-B2EED7103A6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareSimpleExpiredFileCleaner", "ShareSimpleExpiredFileCleaner\ShareSimpleExpiredFileCleaner.csproj", "{31780FBB-8BD0-4F25-A40D-23EC2E6BEBCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sharesimpleaddin", "Sharesimpleaddin\Sharesimpleaddin.csproj", "{7E6BD2CA-A197-4EC7-AB0C-2A9A96DFD496}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharesimpleaddinWeb", "SharesimpleaddinWeb\SharesimpleaddinWeb.csproj", "{7F2FDA09-2018-447C-95F1-22C084E84C1B}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ShareSimpleDB", "ShareSimpleDB\ShareSimpleDB.sqlproj", "{3D3C19FE-6710-4271-AD7E-3384E91EDB8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBox.Push", "DataBox.Push\DataBox.Push.csproj", "{2E7B37AA-74C9-44F0-885A-6BBAA24664D5}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ShareSimpleUI-production", "..\..\ShareSimpleUI-production\", "{D6F00BB2-A7FF-4628-BB25-07479C54410B}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_58984"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\ShareSimpleUI-production\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58984\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_58984"
+		Release.AspNetCompiler.PhysicalPath = "..\..\ShareSimpleUI-production\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58984\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "58984"
+		SlnRelativePath = "..\..\ShareSimpleUI-production\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A04CBF74-B51D-4C47-B7D9-B2EED7103A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A04CBF74-B51D-4C47-B7D9-B2EED7103A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A04CBF74-B51D-4C47-B7D9-B2EED7103A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A04CBF74-B51D-4C47-B7D9-B2EED7103A6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31780FBB-8BD0-4F25-A40D-23EC2E6BEBCF}.Debug|Any CPU.ActiveCfg = Staging|Any CPU
+		{31780FBB-8BD0-4F25-A40D-23EC2E6BEBCF}.Debug|Any CPU.Build.0 = Staging|Any CPU
+		{31780FBB-8BD0-4F25-A40D-23EC2E6BEBCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31780FBB-8BD0-4F25-A40D-23EC2E6BEBCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E6BD2CA-A197-4EC7-AB0C-2A9A96DFD496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E6BD2CA-A197-4EC7-AB0C-2A9A96DFD496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E6BD2CA-A197-4EC7-AB0C-2A9A96DFD496}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7E6BD2CA-A197-4EC7-AB0C-2A9A96DFD496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E6BD2CA-A197-4EC7-AB0C-2A9A96DFD496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E6BD2CA-A197-4EC7-AB0C-2A9A96DFD496}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7F2FDA09-2018-447C-95F1-22C084E84C1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F2FDA09-2018-447C-95F1-22C084E84C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F2FDA09-2018-447C-95F1-22C084E84C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F2FDA09-2018-447C-95F1-22C084E84C1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D3C19FE-6710-4271-AD7E-3384E91EDB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D3C19FE-6710-4271-AD7E-3384E91EDB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D3C19FE-6710-4271-AD7E-3384E91EDB8C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3D3C19FE-6710-4271-AD7E-3384E91EDB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D3C19FE-6710-4271-AD7E-3384E91EDB8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D3C19FE-6710-4271-AD7E-3384E91EDB8C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2E7B37AA-74C9-44F0-885A-6BBAA24664D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E7B37AA-74C9-44F0-885A-6BBAA24664D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E7B37AA-74C9-44F0-885A-6BBAA24664D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E7B37AA-74C9-44F0-885A-6BBAA24664D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6F00BB2-A7FF-4628-BB25-07479C54410B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6F00BB2-A7FF-4628-BB25-07479C54410B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6F00BB2-A7FF-4628-BB25-07479C54410B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6F00BB2-A7FF-4628-BB25-07479C54410B}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D1C6B4B-ECED-436A-B4B6-4E7ACE369479}
+	EndGlobalSection
+EndGlobal

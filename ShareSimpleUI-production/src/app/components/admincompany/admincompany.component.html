@@ -1,0 +1,240 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row pb-4">
+    <div class="ms-Grid-col ms-sm12 ms-md1 ms-lg2 ms-xl3">
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md10 ms-lg8 ms-xl6">
+      <div class="ms-Grid-row pt-3">
+        <div class="ms-Grid-row pt-2">
+          <form [formGroup]="companyForm">
+
+            <div *ngIf="loading" class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+              <img class="loadingimage" src="../../../assets/loading.gif">
+            </div>
+
+            <div *ngIf="showerror" class="ms-MessageBar ms-MessageBar--error">
+              <div class="ms-MessageBar-content">
+                <div class="ms-MessageBar-icon">
+                  <i class="ms-Icon ms-Icon--ErrorBadge"></i>
+                </div>
+                <div class="ms-MessageBar-text">
+                  {{"Invalid file. Only png, gif ,jpg ,jpeg files are allowed. Maximum size 500KB." | translate}}
+                </div>
+              </div>
+            </div>
+
+            <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label is-required">{{"Company name" | translate}}</label>
+                <input formControlName="name" class="ms-TextField-field" type="text" value="" placeholder="">
+              </div>
+            </div>
+
+            <div class="ms-Grid-col ms-sm6 ms-md6 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label">{{"Website" | translate}}</label>
+                <input formControlName="webSite" class="ms-TextField-field" type="text" value="" placeholder="">
+              </div>
+            </div>
+
+            <div class="ms-Grid-col ms-sm6 ms-md6 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label">{{"Domain" | translate}}</label>
+                <input formControlName="domain" class="ms-TextField-field" type="text" value="" placeholder="" readonly>
+              </div>
+            </div>
+            <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label">{{"Contact Person" | translate}}</label>
+                <select formControlName="contactpersonid" class="form-control form-control-sm">
+                  <option value="">{{"Select Contact" | translate}}</option>
+                  <option *ngFor="let item of users" value="{{item.id}}">{{item.name}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+              <div class="form-group">
+                <label style="font-size: 13px;">{{"One time password (OTP) for request data" | translate}}</label>
+                <select formControlName="isOtpRequestdataView" class="form-control form-control-sm">
+                  <option value=true>{{"Active" | translate}}</option>
+                  <option value=false>{{"Inactive" | translate}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+              <div class="ms-TextField">
+                <label
+                  class="ms-Label">{{"Company Logo (max file size 500KB,png,gif,jpg and jpeg are allowed)" | translate}}</label>
+                <div class="pb-5">
+                  <img class="actionlogo float-right" [src]="config.api.base + companylogoUrl">
+                </div>
+              </div>
+            </div>
+            <div class="ms-Grid-row pt-4">
+              <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+                <file-drop (onFileDrop)="dropped($event)">
+                  <div class="ms-Grid-row pt-1">
+                    <div class="ms-Grid-col ms-sm6 dragstyle">
+                      <label class="ms-Label">{{"Drag files here or" | translate}}</label>
+                    </div>
+                    <label style="margin-bottom: 4px;" class="ms-Button ms-Button--primary">
+                      <input type="file" (change)="onFileChange($event)" value="Browse files" />
+                      <span class="ms-Button-label">{{"Browse files" | translate}}</span>
+                    </label>
+                  </div>
+                </file-drop>
+              </div>
+            </div>
+            <div class="ms-Grid-col ms-sm3 ms-md3 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label is-required">{{"Code" | translate}}</label>
+                <select formControlName="countryCode" class="form-control form-control-sm">
+                  <option value="">{{"Select" | translate}}</option>
+                  <option *ngFor="let item of config.country_code.countries | codeOrderBy:'code':true "
+                    value="{{item.code}}">{{item.code}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="ms-Grid-col ms-sm9 ms-md9 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label is-required">{{"Phone" | translate}}</label>
+                <input formControlName="phone" class="ms-TextField-field" type="text" value="" placeholder="">
+              </div>
+            </div>
+            <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label is-required">{{"Address" | translate}}</label>
+                <input formControlName="address" class="ms-TextField-field" type="text" value="" placeholder="">
+              </div>
+            </div>
+            <div class="ms-Grid-col ms-sm6 ms-md6 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label is-required">{{"City" | translate}}</label>
+                <input formControlName="city" class="ms-TextField-field" type="text" value="" placeholder="">
+              </div>
+            </div>
+            <div class="ms-Grid-col ms-sm6 ms-md6 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label is-required">{{"Postalcode" | translate}}</label>
+                <input formControlName="postalCode" class="ms-TextField-field" type="text" value="" placeholder="">
+              </div>
+            </div>
+            <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label is-required">{{"Country" | translate}}</label>
+                <select formControlName="country" class="form-control form-control-sm">
+                  <option value="">{{"Select Country" | translate}}</option>
+                  <option *ngFor="let item of config.country_list" value="{{item}}">{{item}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+              <div class="ms-TextField">
+                <label class="ms-Label">{{"CVR/VAT" | translate}}</label>
+                <input formControlName="cvr" class="ms-TextField-field" type="text" value="" placeholder="">
+              </div>
+            </div>
+
+            <div class="ms-Grid-col ms-sm12 ms-md12 pt-2 pb-2">
+              <div class="ms-Grid-row">
+                <div class="ms-Grid-col ms-sm12 ms-md6">
+                  <div *ngIf="isSuccess && !loading" class="ms-MessageBar ms-MessageBar--success">
+                    <div class="ms-MessageBar-content">
+                      <div class="ms-MessageBar-text {{alert}}">
+                        {{message}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ms-Grid-col ms-sm12 ms-md6">
+                  <button type="button" [disabled]="companyForm.invalid" (click)="companyForm.valid && comapnySubmit()"
+                    class="ms-Button ms-Button--primary float-right">
+                    <span class="ms-Button-label">{{"Update Settings" | translate}}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form [formGroup]="configForm">
+
+            <div class="ms-Grid-col ms-sm10 ms-md10 pt-1 mt-2">
+              <label class="ms-Label">{{"Requested files availability" | translate:daysParam}} </label>
+              <!-- <label class="ms-Label" [translate]="'Requested files availability'" [translateParams]="{value: '32'}"></label> -->
+            </div>
+            <div class="ms-Grid-col ms-sm2 ms-md2 pt-1 mt-2">
+              <div class="ms-TextField">
+                <input formControlName="fileAvailability" class="" style="width:50px" min="1"
+                  max="{{configComp.configFileAvailability}}" type="number">
+              </div>
+            </div>
+
+            <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+              <hr />
+            </div>
+
+            <div class="ms-Grid-col ms-sm10 ms-md8 pt-1">
+              <div class="ms-Grid-col ms-sm2 ms-md2 pt-1">
+                <div class="ms-BrandIcon--icon16 ms-BrandIcon--sharepoint"></div>
+              </div>
+              <label class="ms-Label">{{"SharePoint Integration" | translate}}</label>
+            </div>
+            <div class="ms-Grid-col ms-sm2 ms-md4 pt-1 mb-2">
+              <button type="button" class="ms-Button ms-Button--small float-right">
+                <span (click)="confirmSendMail('SharePoint')" class="ms-Button-label ms-fontColor-themePrimary">
+                  {{"On demand" | translate}}</span>
+              </button>
+            </div>
+
+            <div class="ms-Grid-col ms-sm10 ms-md8 pt-1">
+              <div class="ms-Grid-col ms-sm2 ms-md2 pt-1">
+                <div class="ms-BrandIcon--icon16 ms-BrandIcon--onedrive"></div>
+              </div>
+              <label class="ms-Label">{{"Microsoft Azure Integration" | translate}}</label>
+            </div>
+
+            <div class="ms-Grid-col ms-sm2 ms-md4 pt-1 mb-2">
+              <button type="button" class="ms-Button ms-Button--small float-right">
+                <span (click)="confirmSendMail('Microsoft Azure')" class="ms-Button-label ms-fontColor-themePrimary">
+                  {{"On demand" | translate}}</span>
+              </button>
+            </div>
+
+            <div class="ms-Grid-col ms-sm12 ms-md12">
+              <button type="button" [disabled]="configForm.invalid" (click)="configForm.valid && configSubmit()"
+                class="ms-Button ms-Button--primary float-right">
+                <span class="ms-Button-label">{{"Update Settings" | translate}}</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md1 ms-lg2 ms-xl3">
+    </div>
+
+    <div class="ondemanddialogue sharepointalert">
+      <div class="ms-Dialog ms-Dialog--blocking">
+        <div class="ms-Dialog-title"><b>{{"Request for integration" | translate}}</b></div>
+
+        <div class="ms-Dialog-content pb-4">
+          <div class="ms-Grid-col ms-sm12 ms-md12">
+            {{"Request for Connectid Mail integration with" | translate}} {{integrationLabel}}"?
+          </div>
+        </div>
+        <div class="ms-Dialog-actions">
+          <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+          <button type="button" [disabled]="loading" (click)="!loading && sendMailSPIntegration(integrationLabel)"
+            class="ms-Button ms-Button--primary">
+            <span class="ms-Button-label">{{"Send" | translate}}</span>
+          </button>
+          <button type="button" [disabled]="loading" (click)="demandDialogComponent.close()" class="ms-Button">
+            <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

@@ -1,0 +1,28 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+      <div class="ms-Grid-row ms-textAlignCenter pt-5 companyname">
+        <app-header></app-header>
+      </div>
+
+      <div *ngIf="message" class="ms-Grid-row ms-textAlignCenter pt-4 consent-title">
+        {{message}}
+      </div>
+
+      <div class="ms-Grid-row ms-textAlignCenter pt-2 title-message">
+        {{"You may close this window." | translate}}
+      </div>
+
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+      
+    </div>
+  </div>
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12">
+        <app-safety-signature></app-safety-signature>
+    </div>
+  </div>
+</div>

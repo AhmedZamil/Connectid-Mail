@@ -1,0 +1,14 @@
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\bin\Release\netcoreapp2.0\ShareSimple.deps.json
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\bin\Release\netcoreapp2.0\ShareSimple.runtimeconfig.json
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\bin\Release\netcoreapp2.0\ShareSimple.runtimeconfig.dev.json
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\bin\Release\netcoreapp2.0\ShareSimple.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\bin\Release\netcoreapp2.0\ShareSimple.pdb
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\obj\Release\netcoreapp2.0\ShareSimple.csprojAssemblyReference.cache
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\obj\Release\netcoreapp2.0\ShareSimple.Resources.Resource_en-US.resources
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\obj\Release\netcoreapp2.0\ShareSimple.csproj.GenerateResource.cache
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\obj\Release\netcoreapp2.0\ShareSimple.csproj.CoreCompileInputs.cache
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\obj\Release\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\obj\Release\netcoreapp2.0\ShareSimple.AssemblyInfoInputs.cache
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\obj\Release\netcoreapp2.0\ShareSimple.AssemblyInfo.cs
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\obj\Release\netcoreapp2.0\ShareSimple.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimple\obj\Release\netcoreapp2.0\ShareSimple.pdb

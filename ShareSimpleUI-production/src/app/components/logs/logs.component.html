@@ -1,0 +1,136 @@
+<div class="container-fluid">
+  <div [formGroup]="filterForm">
+
+    <div class="row pt-4 pb-3 routeheader">
+      <div class="col-md-3">
+        {{"Logs" | translate}}
+      </div>
+    </div>
+
+    <div class="row pt-2 pb-4">
+
+      <div class="col-md-3">
+        <input formControlName="searchText" type="text" class="form-control form-control-sm" placeholder="{{'Search' | translate}}...">
+      </div>
+
+      <div class="col-md-7" style="height: 20px;">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <select [attr.disabled]="filterForm.invalid?'':null" formControlName="logkey" class="form-control form-control-sm">
+            <option value="sharedata">{{"Share data logs" | translate}}</option>
+            <option value="postdata">{{"Request data logs" | translate}}</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--data list-->
+  <div class="data-list-header border border-top-0 border-left-0 border-right-0">
+    <div class="row no-gutters">
+      <div class="col-sm-2">
+        {{NameLabel | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Send Date" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{SenderEmailLabel | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{ReceiverEmailLabel | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Files" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Files Size" | translate}}
+      </div>
+      <div class="col-sm-1" *ngIf="showReceivedDate">
+        {{"Received Date" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"File Status" | translate}}
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="logs">
+    <div *ngFor="let rowdata of logs | paginate: { itemsPerPage: displayLength, currentPage: currentPage }">
+      <div class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+        <div class="container-fluid">
+          <div class="row no-gutters">
+            <div class="col-sm-2">
+              {{rowdata.sender.name}}
+            </div>
+            <div class="col-sm-1">
+              {{rowdata.sentDate | date}}
+            </div>
+            <div class="col-sm-2">
+              <span placement="bottom" ngbTooltip="{{rowdata.sender.email}}">{{rowdata.sender.email | shorten: 30:
+                '...'}}</span>
+            </div>
+            <div class="col-sm-2">
+              <div *ngFor="let receiver of rowdata.receivers">
+                <span placement="bottom" ngbTooltip="{{receiver.receiverEmail}}">{{receiver.receiverEmail | shorten:
+                  30: '...'}}</span>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div *ngFor="let filerow of rowdata.files">
+                <span placement="bottom" ngbTooltip="{{filerow.name}}">{{filerow.name | shorten: 15: '...'}}</span>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <div *ngFor="let filerow of rowdata.files">
+                <span>{{(filerow.size/1000000) | number : '1.2-4'}} MB</span>
+              </div>
+            </div>
+            <div class="col-sm-1" *ngIf="showReceivedDate">
+              <span *ngIf="rowdata.files.length>0"> {{rowdata.files[0].createdDate | date}}</span>
+            </div>
+            <div class="col-sm-1">
+              <span *ngIf="rowdata.files.length>0">
+                <div *ngIf="rowdata.files[0].isDeleted" class="fileDeleted">
+                  <p>{{"Deleted" | translate}}</p>({{rowdata.files[0].deletedDate | date}})
+                </div>
+                <div *ngIf="!rowdata.files[0].isDeleted">
+                  <p>{{"Available" | translate}}</p>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="entityCount==0" class="data-list-row">
+      <div class="row">
+        <div class="col-12 text-center">{{"No Data Found" | translate}}</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="data-list-pagination border border-bottom-0 border-left-0 border-right-0 row-striped">
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="second-element" *ngIf="entityCount>0">{{"Showing" | translate}} {{entitystart}} {{"to" | translate}} {{entityend}} {{"of" | translate}} {{entityCount}}
+          {{"entries" | translate}}
+        </p>
+      </div>
+      <div class="col-sm-8">
+        <pagination-controls style="float:right;"
+        previousLabel="{{'Previous' | translate}}"
+        nextLabel="{{'Next' | translate}}"
+        (pageChange)="pageChanged($event)" #api></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-footer></app-footer>

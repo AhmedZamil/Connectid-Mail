@@ -1,0 +1,45 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+      <div class="ms-Grid-row ms-textAlignCenter pt-5 companyname">
+        <app-header></app-header>
+      </div>
+
+      <div class="ms-Grid-row ms-textAlignCenter pt-2">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+
+      <div class="ms-Grid-row ms-textAlignCenter pt-2 pb-4 consent-title">
+        {{"Select the files you would like to download." | translate}}
+      </div>
+
+      <div *ngFor="let item of files" class="ms-Grid-row pt-2">
+        <div class="ms-CheckBox">
+          <input style="margin-top: 10px;" tabindex="-1" type="checkbox" class="ms-CheckBox-input">
+          <label (click)="selectfile(item.fileId)" role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="true" name="checkboxa">
+            <span class="ms-Label permissionfile ml-3">{{item.name}}</span>
+          </label>
+        </div>
+        <hr class="mt-0">
+      </div>
+
+      <div *ngIf="sender" class="ms-Grid-row pt-2 title-message">
+        {{"A request will be sent to" | translate}} {{sender.email}} {{"asking for permission to download" | translate}}
+      </div>
+      <div class="ms-Grid-row float-right pt-4 pb-2">
+        <button type="button"  (click)="cancel()" class="ms-Button">
+          <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+        </button>
+        <button  type="button" [disabled]="(selectedfiles.length < 1) || loading" (click)="(selectedfiles.length>0) && !loading && requestsent()"
+          class="ms-Button ms-Button--primary">
+          <span class="ms-Button-label">{{"Send request" | translate}}</span>
+        </button>
+      </div>
+
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+  </div>
+</div>

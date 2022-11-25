@@ -1,0 +1,31 @@
+<div class="ms-Grid-row pt2">
+  <div *ngIf="loading" class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+    <img class="loadingimage" src="../../../assets/loading.gif">
+  </div>
+</div>
+
+<div *ngIf="!companyInactive">
+  <div class="ms-Grid-row pt4">
+    <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+      <span>{{"Welcome to Connectid Mail. Connectid Mail helps you send and collect data quickly, simply, and securely with the proper consent. Click continue to get started." | translate}}</span>
+    </div>
+  </div>
+
+  <div *ngIf="!loading" class="ms-Grid-row ms-textAlignCenter pt2">
+    <a (click)="continue()" class="ms-Button">
+      <span class="ms-Button-label">{{"Continue" | translate}}</span>
+    </a>
+  </div>
+</div>
+<div *ngIf="companyInactive">
+  <div class="ms-Grid-row pt4">
+    <div class="ms-Grid-col ms-sm12 ms-textAlignCenter">
+      <p>
+        {{"We are sorry, but your account has been deactivated. Your account is part of a subscription that has expired." | translate}}
+      </p>
+      <p>{{"Please contact your administrator for further information." | translate}}</p>
+      <p>{{"For information on how to subscribe, contact" | translate}}&nbsp;<a
+          href="mailto:compliant@safeonline.dk">compliant@safeonline.dk</a></p>
+    </div>
+  </div>
+</div>

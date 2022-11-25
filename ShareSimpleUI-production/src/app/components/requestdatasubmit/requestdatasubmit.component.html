@@ -1,0 +1,80 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+      <form [formGroup]="requestDataForm">
+        <div class="ms-Grid-row ms-textAlignCenter pt-5 companyname">
+          <app-header></app-header>
+        </div>
+        <div class="ms-Grid-row ms-textAlignCenter" style="height: 20px;">
+          <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+        </div>
+        <div class="ms-Grid-row ms-textAlignCenter pt-1 pb-2 consent-title">
+          {{"Please provide the following information." | translate}}
+        </div>
+        <div formArrayName="requestDataList" class="well well-lg">
+          <div *ngFor="let data of requestDatas.controls; let i=index">
+            <div [formGroupName]="i">
+              <div *ngIf="data.value.fieldType=='inputbox'" class="ms-TextField">
+                <label class="ms-Label">{{data.value.fieldName }}</label>
+                <input formControlName="fieldValue" class="ms-TextField-field" type="text" value="" placeholder="">
+              </div>
+              <div *ngIf="data.value.fieldType=='textarea'" class="ms-TextField ms-TextField--multiline">
+                <label class="ms-Label">{{data.value.fieldName}}</label>
+                <textarea formControlName="fieldValue" class="ms-TextField-field"></textarea>
+              </div>
+              <div *ngIf="data.value.fieldType=='uploadfile'" class="ms-Grid-row p2-4 pb-2">
+                <div class="ms-Grid-col ms-sm12 ms-md12">
+                  <div>{{data.value.fieldName}}</div>
+                  <div class="pt-1 pb-1 pl-4 pr-4 filerow" *ngFor="let file of data.value.fieldValue">
+                    <span *ngIf="file.fileName">{{file.fileName}}</span>
+                    <span *ngIf="!file.fileName">{{file.file.name}}</span>
+                    <span style="float: right;cursor: pointer;" *ngIf="file.uploaded!='uploading'">
+                      <img (click)="removefile(file.id,data.value.id)" class="checkicon"
+                        src="../../../assets/close.png">
+                    </span>
+                    <span class="uploadedsign" *ngIf="file.uploaded=='uploaded'">
+                      <img class="checkicon" src="../../../assets/icon_check.png">
+                    </span>
+                    <span class="uploadedsign" *ngIf="file.uploaded=='uploading'">
+                      <img class="sharefileloadingimage" src="../../../assets/loading.gif">
+                    </span>
+                    <span class="failed" *ngIf="file.uploaded!='uploaded' && file.uploaded!='uploading'"
+                      [title]="file.uploaded">failed</span>
+                  </div>
+                  <div class="ms-textAlignCenter pt-2">
+                    <file-drop (onFileDrop)="dropped($event,data.value.id)" multiple="true">
+                      <div class="ms-Grid-row pt-1">
+                        <div class="pt-1">
+                          <img class="actionlogo" src="../../../assets/icon_upload_to_cloud.png">
+                        </div>
+                        <div class="dragstyle pt-1">{{"Drag files here" | translate}}</div>
+                        <div class="orstyle">{{"or" | translate}}</div>
+                      </div>
+                      <div class="ms-Grid-row pt-1 pb-3">
+                        <label class="ms-Button ms-Button--primary">
+                          <input [disabled]="loading" type="file" multiple (change)="onFileChange($event,data.value.id)"
+                            value="Browse files" />
+                          <span class="ms-Button-label">{{"Browse files" | translate}}</span>
+                        </label>
+                      </div>
+                    </file-drop>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ms-Grid-row float-right pt-3 pb-2">
+          <button type="button" [disabled]="requestDataForm.invalid || loading"
+            (click)="requestDataForm.valid && !loading && senddata()" class="ms-Button ms-Button--primary">
+            <span class="ms-Button-label">{{"Send data" | translate}}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+  </div>
+</div>

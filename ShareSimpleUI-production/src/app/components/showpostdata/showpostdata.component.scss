@@ -1,0 +1,26 @@
+.foldername{
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.folderheadertop{
+    font-weight: 550;
+    font-size: 16px; 
+}
+
+.folderheader{
+    font-weight: 550;
+    font-size: 14px;
+}
+
+.selected{
+    background-color: #dee2e6;
+}
+.screen-full {
+  width: calc(100vw - 20px);
+  height: calc(100vh - 35px);
+}
+.screen-normal {
+  width: calc(80vw - 20px);
+  height: calc(80vh - 35px);
+}

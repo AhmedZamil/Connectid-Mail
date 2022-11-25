@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Connectid Mail</title>
+    <script type="text/javascript">
+        var clientId = getParameterByName('client_id');
+        var state = getParameterByName('state');
+        if (clientId && state) {
+            let webServiceUrl = window.location.protocol + "//" + window.location.host + "/";
+            let redirecUrl = '&redirect_uri=' + webServiceUrl + 'authresponse.html&response_mode=query';
+            let authlink = 'https://login.microsoftonline.com/common/oauth2/authorize?client_id=' + clientId + '&prompt=login&response_type=code&state=' + state;
+            authlink = authlink + redirecUrl;
+            window.location = authlink;
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+            var results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

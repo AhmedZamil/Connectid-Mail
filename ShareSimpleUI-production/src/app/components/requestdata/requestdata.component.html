@@ -1,0 +1,70 @@
+<div class="ms-Grid-row">
+  <div class="ms-Grid-col ms-sm12 ms-md12">
+
+    <div class="ms-textAlignCenter" style="height: 20px;">
+      <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+    </div>
+
+    <div class="ms-textAlignCenter requestheader pt-1">{{"Request Data" | translate}}</div>
+    <div class="ms-textAlignCenter requesttitle pt-2">
+      {{"You may request files or specific pieces of information using the options below." | translate}}
+    </div>
+  </div>
+</div>
+
+<div class="ms-Grid-row pt-4">
+  <div class="ms-Grid-col ms-sm12 ms-md12">
+    <form [formGroup]="requestDataForm">
+      <div formArrayName="requestDataList" class="well well-lg">
+        <div *ngFor="let data of requestDatas.controls; let i=index">
+          <div [formGroupName]="i">
+            <span *ngIf="i>0" style="float: right;cursor: pointer;">
+              <img (click)="removefile(i)" class="checkicon" src="../../../assets/close.png">
+            </span>
+            <div class="form-group">
+              <input formControlName="fieldName" type="text" class="form-control form-control-sm" placeholder="{{'What piece of info do you need?' | translate}}">
+            </div>
+            <div class="form-group">
+              <select formControlName="fieldType" class="form-control form-control-sm">
+                <option value="">{{"Select types of entry" | translate}}</option>
+                <option value="inputbox">{{"Input box" | translate}}</option>
+                <option value="textarea">{{"Text area" | translate}}</option>
+                <option value="uploadfile">{{"Upload file" | translate}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="ms-Grid-row pt-2">
+  <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+    <button  type="button"  (click)="requestDataForm.valid && addRequestDatas()" [disabled]="requestDataForm.invalid" class="ms-Button ms-Button--small">
+      <span class="ms-Button-label">{{"Request another item" | translate}}</span>
+    </button>
+  </div>
+</div>
+
+<div class="ms-Grid-row pt-3">
+  <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+    <button  type="button"  (click)="requestDataForm.valid && istocc && uploadrequestdata()" [disabled]="requestDataForm.invalid || !istocc"
+      class="ms-Button ms-Button--primary">
+      <span class="ms-Button-label">{{"Insert link" | translate}}</span>
+    </button>
+  </div>
+</div>
+
+<div class="ms-Grid-col ms-sm12 ms-md12 pb-4">
+  <div class="ms-Grid-row pt-3 pb-2 pl-2">
+    <div *ngIf="to.length>0" class="pb-1" style="font-weight: 550;font-size: 16px;">{{"To" | translate}}</div>
+    <div class="chip" *ngFor="let item of to">
+      {{item}}
+    </div>
+    <div *ngIf="cc.length>0" class="pb-1" style="font-weight: 550;font-size: 16px;">{{"Cc" | translate}}</div>
+    <div class="chip" *ngFor="let item of cc">
+      {{item}}
+    </div>
+  </div>
+</div>

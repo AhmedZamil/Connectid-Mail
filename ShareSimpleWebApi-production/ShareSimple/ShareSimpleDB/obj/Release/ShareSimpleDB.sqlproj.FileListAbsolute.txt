@@ -1,0 +1,5 @@
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\bin\Release\ShareSimpleDB.dacpac
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\bin\Release\ShareSimpleDB.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\bin\Release\ShareSimpleDB.pdb
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\obj\Release\ShareSimpleDB.dll
+D:\Connectid Git Root\ConnectId.Mail\ShareSimpleWebApi-production\ShareSimple\ShareSimpleDB\obj\Release\ShareSimpleDB.pdb

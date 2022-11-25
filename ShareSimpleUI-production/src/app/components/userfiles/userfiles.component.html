@@ -1,0 +1,119 @@
+<div class="container-fluid">
+  <div [formGroup]="filterForm">
+
+    <div class="row no-gutters pt-4 pb-3">
+      <div class="col-md-10 routeheader">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a
+                routerLink="/admin/{{companyId}}/root/{{status}}">{{"Folders" | translate}}</a></li>
+            <li class="breadcrumb-item"><a routerLink="/admin/{{companyId}}/folders">{{"User Folders"}}</a></li>
+            <li *ngIf="messageSender" class="breadcrumb-item"><a
+                routerLink="/admin/{{companyId}}/userfolder/{{folderUser}}">{{messageSender}}</a></li>
+            <li *ngIf="messageFileFolder" class="breadcrumb-item active" aria-current="page">{{messageFileFolder}}</li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+    <div class="row pt-2 pb-4">
+      <div class="col-md-3">
+        <input formControlName="searchText" type="text" class="form-control form-control-sm"
+          placeholder="{{'Search' | translate}}...">
+      </div>
+
+      <div class="col-md-9" style="height: 20px;">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--data list-->
+  <div class="data-list-header border border-top-0 border-left-0 border-right-0">
+    <div class="row no-gutters">
+      <div class="col-sm-4">
+        {{"User folder" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Added" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Availability" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Size" | translate}}
+      </div>
+      <div class="col-sm-2">
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="userfiles">
+    <div *ngFor="let rowdata of userfiles | paginate: { itemsPerPage: displayLength, currentPage: currentPage }">
+      <div class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-4">
+              <span>
+                <img class="folder" src="../../../assets/{{rowdata.type}}"> {{rowdata.name}}
+              </span>
+            </div>
+            <div class="col-sm-2">
+              <span *ngIf="rowdata.createdDate">{{rowdata.createdDate | date}}</span>
+            </div>
+            <div class="col-sm-2">
+              <span *ngIf="rowdata.expDate<6 && rowdata.expDate>=0" style="color:#ed1c24;">{{rowdata.expDate}}
+                {{"days" | translate}}</span>
+              <span *ngIf="rowdata.expDate<11 && rowdata.expDate>5" style="color:#f7931e;">{{rowdata.expDate}}
+                {{"days" | translate}}</span>
+              <span *ngIf="rowdata.expDate>10" style="color:#39b54a;">{{rowdata.expDate}} {{"days" | translate}}</span>
+            </div>
+            <div class="col-sm-2">
+              {{(rowdata.size/1000000) | number : '1.2-4'}} MB
+            </div>
+            <div class="col-sm-2">
+              <span>
+                <a target="_blank" [href]="rowdata.downloadUrl" title=""> <img class="folder"
+                    src="../../../assets/icon_download.png"></a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="entityCount==0" class="data-list-row">
+      <div class="row">
+        <!-- <div class="col-12 text-center">
+          {{(user && user.id != folderUser) ? "Contents of this folder are not visible" : "No Data Found" | translate}}
+        </div> -->
+        <div *ngIf="user && user.id != folderUser" class="col-12 text-center">
+          {{"Contents of this folder are not visible" | translate}}
+        </div>
+        <div *ngIf="!(user && user.id != folderUser)" class="col-12 text-center">
+          {{"No Data Found" | translate}}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="data-list-pagination border border-bottom-0 border-left-0 border-right-0 row-striped">
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="second-element" *ngIf="entityCount>0">
+          {{"Showing" | translate}} {{entitystart}} {{"to" | translate}} {{entityend}} {{"of" | translate}}
+          {{entityCount}} {{"entries" | translate}}
+        </p>
+      </div>
+      <div class="col-sm-8">
+        <pagination-controls style="float:right;" previousLabel="{{'Previous' | translate}}"
+          nextLabel="{{'Next' | translate}}" (pageChange)="pageChanged($event)" #api></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

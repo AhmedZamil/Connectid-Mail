@@ -1,0 +1,201 @@
+<div class="container-fluid">
+  <div class="row no-gutters pt-4 pb-3">
+    <div class="col-md-10 routeheader">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/admin/{{companyId}}/root/{{status}}">{{"Folders" | translate}}</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ isTrustedLink==true? ("Trusted Links" | translate) : ("Shared Folders" | translate)}}</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
+
+  <div [formGroup]="filterForm" class="row pt-2 pb-4">
+    <div class="col-md-3">
+      <input *ngIf="sharedfolderSource.length > 0" formControlName="searchText" type="text"
+        class="form-control form-control-sm" placeholder="{{'Search' | translate}}...">
+    </div>
+    <div class="col-md-7" style="height: 20px;">
+      <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+    </div>
+    <div class="col-md-2">
+      <button type="button" *ngIf="user && user.type" (click)="createFolder()"
+        class="ms-Button ms-Button--primary float-right">
+        <span class="ms-Button-label">+
+          {{isTrustedLink === true? ("New Trusted Link" | translate) :("New folder" | translate) }}</span>
+      </button>
+    </div>
+  </div>
+
+
+  <div *ngIf="isTrustedLink && company && !company.enabledTrustedLink" class="row pt-2">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <img src="../../../assets/icon_trusted_link_overlay.png">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3>{{"Activate Tusted Link" | translate}}</h3>
+        </div>
+      </div>
+      <div class="row pt-2">
+        <div class="col-md-12 text-center">
+          {{"Create a New Trusted Link to activate the feature. Trusted link lets you create a public link for getting documents from
+        anyone with the link and share the uploaded content with selected Connectid Mail users." | translate}}
+        </div>
+      </div>
+      <div class="row pt-3">
+        <div class="col-md-12 text-center">
+          {{"Activating this feature might trigger an extra cost. For more information, please click here:" | translate}}
+          <a href="{{linkConfig.overView}}">{{linkConfig.overView}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="(isTrustedLink && company && company.enabledTrustedLink) || !isTrustedLink">
+    <!--data list-->
+    <div class="data-list-header border border-top-0 border-left-0 border-right-0">
+      <div class="row no-gutters">
+        <div class="col-sm-5">
+          {{"Name" | translate}}
+        </div>
+        <div class="col-sm-2">
+          {{"Modified date" | translate}}
+        </div>
+        <div class="col-sm-2">
+          {{"Shared with" | translate}}
+        </div>
+        <div class="col-sm-2">
+          {{"Number of files" | translate}}
+        </div>
+        <div class="col-sm-1">
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="sharedfolders">
+      <div *ngFor="let rowdata of sharedfolders | paginate: { itemsPerPage: displayLength, currentPage: currentPage }">
+        <div class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-5">
+                <span class="namelink" style="cursor: pointer;"
+                  routerLink="/admin/{{companyId}}/sharedfolderfile/{{rowdata.adminFolder.id}}">
+                  <img class="folder" src="../../../assets/icon_folder.png"> {{rowdata.adminFolder.folderName}}
+                </span>
+              </div>
+              <div class="col-sm-2">
+                {{rowdata.adminFolder.updateDate | date}}
+              </div>
+              <div class="col-sm-2">
+                {{rowdata.sharedWith}}
+              </div>
+              <div class="col-sm-2">
+                {{rowdata.noOfFiles}}
+              </div>
+              <div class="col-sm-1">
+                <div *ngIf="user && user.type" ngbDropdown placement="bottom-right" class="d-inline-block">
+                  <div id="dropdownBasic1" style="cursor: pointer;" ngbDropdownToggle>
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                  </div>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button type="button" routerLink="/admin/{{companyId}}/sharedfolderfile/{{rowdata.adminFolder.id}}"
+                      class="dropdown-item">{{"Sharing" | translate}}</button>
+                    <button type="button" (click)="createFolder(rowdata.adminFolder)"
+                      class="dropdown-item">{{"Rename" | translate}}</button>
+                    <button type="button" (click)="deleteFolder(rowdata.adminFolder)"
+                      class="dropdown-item">{{"Delete" | translate}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="entityCount==0" class="data-list-row">
+        <div class="row">
+          <div class="col-12 text-center">{{"No Data Found" | translate}}</div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="data-list-pagination border border-bottom-0 border-left-0 border-right-0 row-striped">
+      <div class="row">
+        <div class="col-sm-4">
+          <p class="second-element" *ngIf="entityCount>0">{{"Showing" | translate}} {{entitystart}} {{"to" | translate}}
+            {{entityend}} {{"of" | translate}} {{entityCount}}
+            {{"entries" | translate}}</p>
+        </div>
+        <div class="col-sm-8">
+          <pagination-controls style="float:right;" previousLabel="{{'Previous' | translate}}"
+            nextLabel="{{'Next' | translate}}" (pageChange)="pageChanged($event)" #api></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="folderDialog">
+  <div class="ms-Dialog ms-Dialog--blocking">
+    <div class="ms-Dialog-title">{{message}}</div>
+    <form [formGroup]="folderForm">
+      <div class="ms-Grid-col ms-sm12 ms-md12">
+        <div class="ms-TextField">
+          <label
+            class="ms-Label is-required">{{ isTrustedLink === true? ("Trusted Link Name" | translate): ("Folder name" | translate)}}</label>
+          <input formControlName="folderName" class="ms-TextField-field" type="text" value="" placeholder="">
+        </div>
+        <div *ngIf="isTrustedLink && folderForm.value.id === '00000000-0000-0000-0000-000000000000'"
+          class="ms-TextField-description">
+          <p>{{"Activating this feature might trigger an extra cost."}}</p>
+          <p>{{"For more information, please click here:" | translate}}
+            <a href="{{linkConfig.overView}}">{{linkConfig.overView}}</a>
+          </p>
+          <p>{{"Press Accept to enable this feature" | translate}}</p>
+        </div>
+      </div>
+    </form>
+    <div class="ms-Dialog-actions">
+      <button type="button" [disabled]="folderForm.invalid" (click)="folderForm.valid && addfolderdata()"
+        class="ms-Button ms-Button--primary">
+        <span *ngIf="folderForm.value.id === '00000000-0000-0000-0000-000000000000'"
+          class="ms-Button-label">{{ isTrustedLink === true? ("Accept and Create" | translate):("Create" | translate)}}</span>
+        <span *ngIf="folderForm.value.id !== '00000000-0000-0000-0000-000000000000'"
+          class="ms-Button-label">{{ "Save" | translate}}</span>
+      </button>
+      <button type="button" (click)="dialogComponent.close()" class="ms-Button">
+        <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="deletefolder">
+  <div class="ms-Dialog ms-Dialog--blocking">
+    <div class="ms-Dialog-title">{{"Confirm" | translate}}</div>
+    <div class="ms-Dialog-content pb-4">
+      <div class="ms-Grid-col ms-sm12 ms-md12">
+        {{"Do you wanna delete this folder?" | translate}}
+      </div>
+      <div class="ms-Grid-col ms-sm12 ms-md12">
+        <span *ngIf="deletemessage && !deletemessage.isSuccess" class="ms-message">{{deletemessage.messgae}}</span>
+      </div>
+    </div>
+    <div class="ms-Dialog-actions">
+      <button type="button" [disabled]="loading" (click)="!loading && removefolder()"
+        class="ms-Button ms-Button--primary">
+        <span class="ms-Button-label">{{"OK" | translate}}</span>
+      </button>
+      <button type="button" (click)="deletedialogComponent.close()" class="ms-Button">
+        <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+      </button>
+    </div>
+  </div>
+</div>

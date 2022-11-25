@@ -1,0 +1,149 @@
+﻿Message: dummy log., 	CreatedAt: 10/1/2018 7:01:02 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 1:33:45 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 1:33:45 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 1:33:45 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 1:33:45 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 1:33:54 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 1:33:54 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 1:33:54 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 2:01:25 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 2:01:26 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 2:01:26 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 2:01:26 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 2:01:33 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 2:01:33 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 2:01:33 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 2:45:26 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 2:45:26 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 2:45:26 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 2:45:40 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 2:45:50 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 2:45:50 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 2:45:50 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 2:46:19 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 2:46:20 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 2:46:20 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 2:46:25 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 2:46:25 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 2:46:25 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 2:46:26 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 2:51:52 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 2:51:52 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 2:51:52 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 2:51:52 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 2:51:52 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 2:51:52 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 2:51:53 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 2:54:45 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 2:54:45 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 2:54:45 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 2:54:45 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 2:54:46 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 2:54:46 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 2:54:46 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 2:54:54 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 2:54:54 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 2:54:54 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 2:58:28 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 2:58:28 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 2:58:29 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 2:58:29 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 2:58:29 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 2:58:29 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 2:58:29 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 3:00:18 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 3:00:18 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 3:00:18 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 3:00:18 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 3:00:19 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 3:00:19 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 3:00:19 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 3:02:40 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 3:02:40 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 3:02:41 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 3:02:41 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 3:02:41 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 3:02:41 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 3:02:42 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 3:04:49 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 3:04:50 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 3:04:50 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 3:04:50 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 3:04:50 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 3:04:50 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 3:04:51 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 6:01:52 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 6:02:46 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 6:02:46 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 6:02:47 PM
+Message: starting toccread interval. requestdatacmpt-line-50 	CreatedAt: 10/2/2018 6:03:00 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:01 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:02 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:03 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:04 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:05 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:06 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:07 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:08 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:09 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:10 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:11 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:12 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:13 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:14 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:15 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:16 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:17 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:18 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:19 PM
+Message: wc component if. welcomepageCpmt-line-44 	CreatedAt: 10/2/2018 6:03:25 PM
+Message: this.storageCode();. line 43 	CreatedAt: 10/2/2018 6:03:25 PM
+Message: Initializing home component. line 36 	CreatedAt: 10/2/2018 6:03:25 PM
+Message: Initializing wc component 	CreatedAt: 10/2/2018 6:03:25 PM
+Message: Initializing home component. checking subscription line 43 	CreatedAt: 10/2/2018 6:03:26 PM
+Message: Initializing home component. active line 45 	CreatedAt: 10/2/2018 6:03:26 PM
+Message: Initializing home component. active line 51 	CreatedAt: 10/2/2018 6:03:26 PM
+Message: starting toccread interval. requestdatacmpt-line-50 	CreatedAt: 10/2/2018 6:03:30 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:31 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:32 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:33 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:34 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:35 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:36 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:37 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:38 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:39 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:40 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:41 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:42 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:43 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:44 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:45 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:46 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:47 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:48 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:49 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:50 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:51 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:52 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:53 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:54 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:55 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:56 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:57 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:58 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:03:59 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:00 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:01 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:03 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:04 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:04 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:05 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:07 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:08 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:09 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:10 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:11 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:12 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:13 PM
+Message: parsing tcc read interval result. Interval Index: 1 requestdatacmpt-line-55 	CreatedAt: 10/2/2018 6:04:14 PM

@@ -1,0 +1,85 @@
+<div *ngIf="isregistration" class="ms-Grid-row pt-2">
+  <form [formGroup]="registrationForm">
+
+    <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter" style="height: 20px;">
+      <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+    </div>
+
+    <div *ngIf="isregistration" class="ms-Grid-col ms-sm12 ms-md12 pt-1 ms-textAlignCenter">
+      {{"Signup for Connectid Mail" | translate}}
+    </div>
+
+    <div *ngIf="isregistration" class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+      <div class="ms-TextField">
+        <label class="ms-Label is-required">{{"Company name" | translate}}</label>
+        <input formControlName="company" class="ms-TextField-field" type="text" value="" placeholder="">
+      </div>
+    </div>
+
+    <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+      <div class="ms-TextField">
+        <label class="ms-Label">{{"Website" | translate}}</label>
+        <input formControlName="webSite" class="ms-TextField-field" type="text" value="" placeholder="">
+      </div>
+    </div>
+    <!-- <div class="ms-Grid-col ms-sm6 ms-md6 pt-1">
+      <div class="ms-TextField">
+        <label class="ms-Label">Domain</label>
+        <input formControlName="domain" class="ms-TextField-field" type="text" value="" placeholder="" readonly>
+      </div>
+    </div>
+     -->
+
+    <div class="ms-Grid-col ms-sm3 ms-md3 pt-1">
+      <div class="ms-TextField">
+        <label class="ms-Label is-required">{{"Code" | translate}}</label>
+        <select formControlName="countryCode" class="form-control form-control-sm">
+          <option value=""></option>
+          <option *ngFor="let item of config.country_code.countries" value="{{item.code}}">{{item.code}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="ms-Grid-col ms-sm9 ms-md9 pt-1">
+      <div class="ms-TextField">
+        <label class="ms-Label is-required">{{"Phone" | translate}}</label>
+        <input formControlName="phone" class="ms-TextField-field" type="text" value="" placeholder="">
+      </div>
+    </div>
+    <div *ngIf="isregistration" class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+      <div class="ms-TextField">
+        <label class="ms-Label is-required">{{"Address" | translate}}</label>
+        <input formControlName="address" class="ms-TextField-field" type="text" value="" placeholder="">
+      </div>
+    </div>
+    <div class="ms-Grid-col ms-sm6 ms-md6 pt-1">
+      <div class="ms-TextField">
+        <label class="ms-Label is-required">{{"City" | translate}}</label>
+        <input formControlName="city" class="ms-TextField-field" type="text" value="" placeholder="">
+      </div>
+    </div>
+    <div class="ms-Grid-col ms-sm6 ms-md6 pt-1">
+      <div class="ms-TextField">
+        <label class="ms-Label is-required">{{"Postalcode" | translate}}</label>
+        <input formControlName="postalCode" class="ms-TextField-field" type="text" value="" placeholder="">
+      </div>
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+      <div class="ms-TextField">
+        <label class="ms-Label is-required">{{"Country" | translate}}</label>
+        <select formControlName="country" class="form-control form-control-sm">
+          <option value="">{{"Select Country" | translate}}</option>
+          <option *ngFor="let item of config.country_code.countries | orderBy :'name'" value="{{item.name}}">
+            {{item.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="isregistration" class="ms-Grid-col ms-sm12 ms-md12">
+      <button type="button" [disabled]="registrationForm.invalid || loading"
+        (click)="registrationForm.valid && !loading && registrationSubmit()"
+        class="ms-Button ms-Button--primary float-right">
+        <span class="ms-Button-label">{{"Confirm" | translate}}</span>
+      </button>
+    </div>
+  </form>
+</div>

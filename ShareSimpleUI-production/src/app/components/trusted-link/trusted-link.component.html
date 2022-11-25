@@ -1,0 +1,155 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+      <div class="ms-Grid-row ms-textAlignCenter pt-5 companyname">
+        <app-header [company]="company"></app-header>
+      </div>
+
+      <div class="ms-Grid-row ms-textAlignCenter pt-2">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+      <div *ngIf="trustedLink.step === 1">
+        <form *ngIf="trustedLink" [formGroup]="otpSendForm">
+          <div class="ms-Grid-row ms-textAlignCenter pt-2 pb-2">
+            {{"Please enter your email address to continue." | translate}}
+          </div>
+          <div class="ms-Grid-row ms-textAlignCenter pt-2 pb-2">
+            <div class="ms-TextField ms-TextField--underlined">
+              <label class="ms-Label">{{"Email Address" | translate}}</label>
+              <input formControlName="email" class="ms-TextField-field input-otp" type="text" value=""
+                placeholder="johndoe@dotnet.com">
+            </div>
+            <div class="ms-Grid-row pt-1 pb-2">
+              <div class="ms-Grid-col ms-sm12">
+                <button type="button" class="ms-Button ms-Button--primary float-right" [disabled]="otpSendForm.invalid"
+                  (click)="sendotp()">
+                  <span class="ms-Button-label">{{'Continue' | translate}}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div *ngIf="!(trustedLink || loading)" class="ms-Grid-row ms-textAlignCenter pt-2 pb-2">
+          <p>{{'This is not a valid link.' | translate}}</p>
+        </div>
+      </div>
+      <div *ngIf="trustedLink.step === 2">
+        <div class="ms-Grid-row ms-textAlignCenter pt-4 pb-4 consent-title">
+          {{"An email has been sent to you with a one time password. Please enter the password below" | translate}}
+        </div>
+        <form [formGroup]="otpMatchForm">
+          <div class="ms-TextField ms-TextField--underlined">
+            <label class="ms-Label">{{"Password" | translate}}</label>
+            <input formControlName="otpPasscode" class="ms-TextField-field input-otp" type="password" value=""
+              placeholder="">
+          </div>
+          <div *ngIf="message" class="ms-Grid-row pt-1 pb-2">
+            <div class="ms-Grid-col ms-sm12">
+              <span class="ms-message">{{message}}</span>
+            </div>
+          </div>
+          <div class="ms-Grid-row pt-1 pb-2">
+            <div class="ms-Grid-col ms-sm9">
+              <!-- <button *ngIf="optStep == 2" type="button" class="ms-Button ms-Button--default float-left"
+                (click)="otpsendForm.valid && !isLinkExpired && sendotp()">
+                <span class="ms-Button-label">{{"Resend OTP" | translate}}</span>
+              </button> -->
+            </div>
+            <div class="ms-Grid-col ms-sm3">
+              <button type="button" [disabled]="otpMatchForm.invalid" (click)="otpMatchForm.valid && matchotp()"
+                class="ms-Button ms-Button--primary float-right">
+                <span class="ms-Button-label">{{"Ok" | translate}}</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <form *ngIf="trustedLink.step === 3" [formGroup]="consentForm">
+        <div class="ms-Grid-row pt-4 pb-2">
+        </div>
+        <div class="ms-Grid-row border consent-description p-2">
+          <pre class="pretagcss">{{consent.consentText}}</pre>
+        </div>
+        <div class="ms-Grid-row pt-1">
+          <div class="ms-CheckBox">
+            <input style="margin-top: 10px;" formControlName="consent1" tabindex="-1" type="checkbox"
+              class="ms-CheckBox-input">
+            <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxa">
+              <span class="ms-Label">{{"I agree to this." | translate}}</span>
+            </label>
+          </div>
+        </div>
+        <hr>
+
+        <div class="ms-Grid-row float-right pt-2 pb-2">
+          <button type="button" class="ms-Button">
+            <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+          </button>
+          <button type="button" [disabled]="consentForm.invalid" (click)="consentForm.valid && consentConfirm()"
+            class="ms-Button ms-Button--primary">
+            <span class="ms-Button-label">{{"Confirm" | translate}}</span>
+          </button>
+        </div>
+      </form>
+      <div *ngIf="trustedLink.step === 4">
+        <form [formGroup]="tuestedLinkDataForm">
+          <div class="ms-TextField ms-TextField--multiline">
+            <label class="ms-Label">{{'Message' | translate}}</label>
+            <textarea formControlName="message" class="ms-TextField-field"></textarea>
+          </div>
+          <div class="ms-Grid-row p2-4 pb-2">
+            <div class="ms-Grid-col ms-sm12 ms-md12">
+              <div>{{'Files' | translate}}</div>
+              <div class="pt-1 pb-1 pl-4 pr-4 filerow" *ngFor="let file of tuestedLinkFiles">
+                <span *ngIf="file.fileName">{{file.fileName}}</span>
+                <span *ngIf="!file.fileName">{{file.file.name}}</span>
+                <span style="float: right;cursor: pointer;" *ngIf="file.uploaded!='uploading'">
+                  <img (click)="removefile(file.id)" class="checkicon" src="../../../assets/close.png">
+                </span>
+                <span class="uploadedsign" *ngIf="file.uploaded=='uploaded'">
+                  <img class="checkicon" src="../../../assets/icon_check.png">
+                </span>
+                <span class="uploadedsign" *ngIf="file.uploaded=='uploading'">
+                  <img class="sharefileloadingimage" src="../../../assets/loading.gif">
+                </span>
+                <span class="failed" *ngIf="file.uploaded!='uploaded' && file.uploaded!='uploading'"
+                  [title]="file.uploaded">failed</span>
+              </div>
+              <div class="ms-textAlignCenter pt-2">
+                <file-drop (onFileDrop)="dropped($event)" multiple="true">
+                  <div class="ms-Grid-row pt-1">
+                    <div class="pt-1">
+                      <img class="actionlogo" src="../../../assets/icon_upload_to_cloud.png">
+                    </div>
+                    <div class="dragstyle pt-1">{{"Drag files here" | translate}}</div>
+                    <div class="orstyle">{{"or" | translate}}</div>
+                  </div>
+                  <div class="ms-Grid-row pt-1 pb-3">
+                    <label class="ms-Button ms-Button--primary">
+                      <input [disabled]="loading" type="file" multiple (change)="onFileChange($event)"
+                        value="Browse files" />
+                      <span class="ms-Button-label">{{"Browse files" | translate}}</span>
+                    </label>
+                  </div>
+                </file-drop>
+              </div>
+            </div>
+          </div>
+          <div class="ms-Grid-row float-right pt-3 pb-2">
+            <div class="ms-Grid-col ms-sm6">{{tuestedLinkDataForm.value | json}}</div>
+            <div class="ms-Grid-col ms-sm6">
+              <button type="button" [disabled]="tuestedLinkDataForm.invalid || loading"
+                (click)="tuestedLinkDataForm.valid && !loading && senddata()" class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label">{{"Send data" | translate}}</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+  </div>
+</div>

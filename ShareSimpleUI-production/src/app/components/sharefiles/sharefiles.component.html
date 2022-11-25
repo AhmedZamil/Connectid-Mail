@@ -1,0 +1,99 @@
+<form [formGroup]="sharefileForm">
+  <div *ngIf="files.length>0" class="ms-Grid-row pt-2">
+    <div class="ms-Grid-col ms-sm1 ms-md3"></div>
+    <div class="ms-Grid-col ms-sm10 ms-md6">
+
+      <div class="ms-textAlignCenter pb-1">{{"Upload files and add the link" | translate}}</div>
+
+      <div class="ms-Grid-row pt-4 filerow" *ngFor="let file of files">
+        <span>{{file.file.name}}</span>
+        <span style="float: right;cursor: pointer;" *ngIf="file.uploaded!='uploading'">
+          <img (click)="removefile(file.id)" class="checkicon" src="../../../assets/close.png">
+        </span>
+        <span class="uploadedsign" *ngIf="file.uploaded=='uploaded'">
+          <img class="checkicon" src="../../../assets/icon_check.png">
+        </span>
+        <span class="uploadedsign" *ngIf="file.uploaded=='uploading'">
+          <img class="sharefileloadingimage" src="../../../assets/loading.gif">
+        </span>
+        <span class="failed" *ngIf="file.uploaded!='uploaded' && file.uploaded!='uploading'"
+          [title]="file.uploaded">failed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ms-Grid-row pt-4">
+    <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+      <file-drop (onFileDrop)="dropped($event)">
+        <div class="ms-Grid-row pt-1">
+          <div class="pt-1">
+            <img class="actionlogo" src="../../../assets/icon_upload_to_cloud.png">
+          </div>
+          <div class="dragstyle pt-1">{{"Drag files here" | translate}}</div>
+          <div class="orstyle">{{"or" | translate}}</div>
+        </div>
+        <div class="ms-Grid-row pt-1 pb-3">
+          <label class="ms-Button ms-Button--primary">
+            <input [disabled]="loading" type="file" (change)="onFileChange($event)" value="Browse files" />
+            <span class="ms-Button-label">{{"Browse files" | translate}}</span>
+          </label>
+        </div>
+
+      </file-drop>
+    </div>
+  </div>
+
+  <div *ngIf="files.length>0" class="ms-Grid-row pt-3 pb-3">
+    <div class="ms-Grid-col ms-sm12 ms-md12 ms-textAlignCenter">
+      <div> {{"Would you like to allow the receiver to download the files or view only" | translate}}</div>
+
+      <div class="form-check pt-2">
+        <input formControlName="downloadview" class="form-check-input" (change)="checkchange()" type="radio"
+          value="download">
+        <label class="form-check-label" for="exampleRadios1">
+          {{"Download" | translate}}
+        </label>
+      </div>
+      <div class="form-check pt-2">
+        <input formControlName="downloadview" class="form-check-input" (change)="checkchange()" type="radio"
+          value="view">
+        <label class="form-check-label" for="exampleRadios2">
+          {{"View only" | translate}}
+        </label>
+      </div>
+
+      <div *ngIf="!showLink" class="ms-MessageBar ms-MessageBar--error">
+        <div class="ms-MessageBar-content">
+          <div class="ms-MessageBar-icon">
+            <i class="ms-Icon ms-Icon--ErrorBadge"></i>
+          </div>
+          <div class="ms-MessageBar-text">
+            {{"Invalid file format. Only pdf, image, txt files are allowed to view" | translate}}
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4">
+        <button type="button" [disabled]="sharefileForm.invalid || loading || !istocc || !showLink"
+          (click)="sharefileForm.valid && !loading && istocc && showLink && addInsertLink()"
+          class="ms-Button ms-Button--primary">
+          <span class="ms-Button-label">{{"Insert link" | translate}}</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</form>
+
+<div class="ms-Grid-col ms-sm12 ms-md12 pb-4">
+  <div *ngIf="files.length>0" class="ms-Grid-row pt-3 pb-2 pl-2">
+    <div *ngIf="sharefileForm.get('to').value.length>0" class="pb-1" style="font-weight: 550;font-size: 16px;">To</div>
+    <div class="chip" *ngFor="let item of sharefileForm.get('to').value">
+      {{item}}
+    </div>
+    <div *ngIf="sharefileForm.get('cc').value.length>0" class="pb-1" style="font-weight: 550;font-size: 16px;">Cc</div>
+    <div class="chip" *ngFor="let item of sharefileForm.get('cc').value">
+      {{item}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="ms-Grid">
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+      <form *ngIf="optsend" [formGroup]="otpsendForm">
+        <div class="ms-Grid-row ms-textAlignCenter pt-5 companyname">
+          <app-header [company]="company"></app-header>
+        </div>
+        <div *ngIf="emails && emails.length>0">
+          <div class="ms-Grid-row ms-textAlignCenter pt-4 pb-4 consent-title">
+            {{"Please select a mail to send one time password." | translate}}
+          </div>
+          <div *ngFor="let item of emails" class="form-check pt-2">
+            <input formControlName="email" class="form-check-input" type="radio" [value]="item.receiverId">
+            <label class="form-check-label" for="exampleRadios1">
+              {{item.receiverEmail}}
+            </label>
+          </div>
+          <hr>
+          <div class="ms-Grid-row pt-2 pb-2">
+            <div class="ms-Grid-col ms-sm12 ms-md9">
+              <div class="ms-Grid-row float-left">
+                <span class="ms-message" style="padding-left:0px;" *ngIf="isLinkExpired">
+                  {{"The requested data is already submitted. If you still want to submit again, please ask your requester to send a request mail again. Thank you." | translate}}</span>
+              </div>
+            </div>
+            <div class="ms-Grid-col ms-sm12 ms-md3">
+              <div class="ms-Grid-row float-right">
+                <button type="button" [disabled]="otpsendForm.invalid || isLinkExpired"
+                  (click)="otpsendForm.valid && !isLinkExpired && sendotp()" class="ms-Button ms-Button--primary">
+                  <span class="ms-Button-label">{{"Send" | translate}}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="emails && emails.length==0" class="ms-Grid-row ms-textAlignCenter pt-4 pb-4 consent-title">
+          <img class="loadingimage" src="../../../assets/loading.gif">
+        </div>
+        <div *ngIf="!emails" class="ms-Grid-row ms-textAlignCenter pt-4 pb-4">
+          <p>{{"Sorry, the data is no longer available." | translate}}</p>
+          <p>{{"Please ask the sender to share the data again." | translate}}</p>
+        </div>
+      </form>
+      <form *ngIf="!optsend" [formGroup]="otpmatchForm">
+        <div class="ms-Grid-row ms-textAlignCenter pt-5 companyname">
+          <app-header *ngIf="company" [company]="company"></app-header>
+        </div>
+
+        <div *ngIf="optStep == 1" class="ms-Grid-row ms-textAlignCenter pt-4 pb-4 consent-title">
+          {{"An email has been sent to you with a one time password. Please enter the password below" | translate}}
+        </div>
+
+        <div *ngIf="optStep == 2" class="ms-Grid-row ms-textAlignCenter pt-4 pb-4 consent-title">
+          {{"An SMS passcode has been sent to the recipient for identification. Please enter the passcode below." | translate}}
+          <br>
+          {{"The SMS passcode has been sent to" | translate}} {{selectedReceiver.mobile | star: 3 }}
+        </div>
+
+        <div class="ms-TextField ms-TextField--underlined">
+          <label class="ms-Label">{{"Password" | translate}}</label>
+          <input formControlName="otppasscode" class="ms-TextField-field input-otp" type="password" value=""
+            placeholder="">
+        </div>
+        <div *ngIf="message" class="ms-Grid-row pt-1 pb-2">
+          <div class="ms-Grid-col ms-sm12">
+            <span class="ms-message">{{message}}</span>
+          </div>
+        </div>
+        <div class="ms-Grid-row pt-1 pb-2">
+          <div class="ms-Grid-col ms-sm9">
+            <button *ngIf="optStep == 2" type="button" class="ms-Button ms-Button--default float-left"
+              (click)="otpsendForm.valid && !isLinkExpired && sendotp()">
+              <span class="ms-Button-label">{{"Resend OTP" | translate}}</span>
+            </button>
+          </div>
+          <div class="ms-Grid-col ms-sm3">
+            <button type="button" [disabled]="otpmatchForm.invalid" (click)="otpmatchForm.valid && matchotp()"
+              class="ms-Button ms-Button--primary float-right">
+              <span class="ms-Button-label">{{"Ok" | translate}}</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="ms-Grid-col ms-sm12 ms-md4">
+    </div>
+  </div>
+</div>

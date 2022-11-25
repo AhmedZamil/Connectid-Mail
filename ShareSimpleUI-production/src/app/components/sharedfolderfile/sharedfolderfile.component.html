@@ -1,0 +1,210 @@
+<div class="container-fluid">
+  <div [formGroup]="filterForm">
+    <div class="row no-gutters pt-4 pb-3">
+      <div class="col-md-10 routeheader">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a
+                routerLink="/admin/{{companyId}}/root/{{status}}">{{"Folders" | translate}}</a></li>
+            <li *ngIf="sharedfolder.isTrustedLink" class="breadcrumb-item"><a
+                routerLink="/admin/{{companyId}}/sharedfolder/tl">{{ "Trusted Links" | translate }}</a>
+            </li>
+            <li *ngIf="!sharedfolder.isTrustedLink" class="breadcrumb-item"><a
+                routerLink="/admin/{{companyId}}/sharedfolder">{{"Shared Folders" | translate }}</a>
+            </li>
+            <li *ngIf="sharedfolder" class="breadcrumb-item active" aria-current="page">{{sharedfolder.folderName}}</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+    <div class="row pt-2 pb-4">
+      <div class="col-md-3">
+        <input formControlName="searchText" type="text" class="form-control form-control-sm"
+          placeholder="{{'Search' | translate}}...">
+      </div>
+
+      <div class="col-md-3" style="height: 20px;">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+      <div class="col-md-4">
+        <span *ngIf="sharedUser && user && user.type"
+          class="float-right share-people">{{"This folder is shared with" | translate}}
+          {{sharedUser.length}}
+          {{"people" | translate}}</span>
+      </div>
+      <div class="col-md-2">
+        <button type="button" *ngIf="user && user.type" (click)="managesharing()"
+          style="text-overflow: ellipsis;overflow: hidden;" title="{{'Manage Sharing' | translate}}"
+          class="btn btn-outline-primary btn-sm btn-block">
+          <img class="folder" src="../../../assets/ss_icon_share.png">
+          <span>{{"Manage Sharing" | translate}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Trusted Link -->
+  <div *ngIf="sharedfolder.isTrustedLink" class="ms-Grid-row">
+    <div class="ms-Grid-col ms-sm10">
+      <label class="ms-Label">{{'Trusted Link' | translate}}</label>
+      <input class="ms-TextField-field" disabled type="text" value="{{sharedfolder.trustedLink}}">
+    </div>
+    <div class="ms-Grid-col ms-sm2">
+      <button type="button" (click)="copyLink()" title="{{'Copy Link' | translate}}"
+        class="btn btn-outline-primary btn-sm btn-block btn-copy">
+        <img class="folder" src="../../../assets/icon_copy.png">
+        <span>{{'Copy Link' | translate}}</span>
+      </button>
+    </div>
+  </div>
+  <!--data list-->
+  <div class="data-list-header border border-top-0 border-left-0 border-right-0">
+    <div class="row no-gutters">
+      <div class="col-sm-4">
+        {{"User folder" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Modified date" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Files available" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Size" | translate}}
+      </div>
+      <div class="col-sm-2">
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="sharedfolderfiles">
+    <div
+      *ngFor="let rowdata of sharedfolderfiles | paginate: { itemsPerPage: displayLength, currentPage: currentPage }">
+      <div class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-4">
+              <span>
+                <img class="folder" src="../../../assets/{{rowdata.type}}"> {{rowdata.name}}
+              </span>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+              <span *ngIf="rowdata.expDate<6 && rowdata.expDate>=0" style="color:#ed1c24;">{{rowdata.expDate}}
+                {{"days" | translate}}</span>
+              <span *ngIf="rowdata.expDate<11 && rowdata.expDate>5" style="color:#f7931e;">{{rowdata.expDate}}
+                {{"days" | translate}}</span>
+              <span *ngIf="rowdata.expDate>10" style="color:#39b54a;">{{rowdata.expDate}} {{"days" | translate}}</span>
+            </div>
+            <div class="col-sm-2">
+              {{(rowdata.size/1000000) | number : '1.2-4'}} MB
+            </div>
+            <div class="col-sm-2">
+              <span>
+                <a target="_blank" [href]="rowdata.downloadUrl" title=""> <img class="folder"
+                    src="../../../assets/icon_download.png"></a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="entityCount==0" class="data-list-row">
+      <div class="row">
+        <!-- <div class="col-12 text-center">
+          {{(user && user.type) ? "Contents of this folder are not visible" : "No Data Found" | translate}}
+        </div> -->
+        <div *ngIf="user && user.type" class="col-12 text-center">
+          {{"Contents of this folder are not visible" | translate}}
+        </div>
+        <div *ngIf="!(user && user.type)" class="col-12 text-center">
+          {{"No Data Found" | translate}}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="data-list-pagination border border-bottom-0 border-left-0 border-right-0 row-striped">
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="second-element" *ngIf="entityCount>0">{{"Showing" | translate}} {{entitystart}} {{"to" | translate}}
+          {{entityend}} {{"of" | translate}} {{entityCount}}
+          {{"entries" | translate}}</p>
+      </div>
+      <div class="col-sm-8">
+        <pagination-controls style="float:right;" previousLabel="{{'Previous' | translate}}"
+          nextLabel="{{'Next' | translate}}" (pageChange)="pageChanged($event)" #api></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="userdialog">
+  <div class="ms-Dialog ms-Dialog--blocking">
+    <div class="float-right">
+      <i (click)="closed()" class="ms-Icon ms-Icon--Cancel"></i>
+    </div>
+    <div class="ms-Dialog-title">
+      <span>
+        <img class="folder" src="../../../assets/icon_shared_folder.png"> {{"Documents" | translate}}
+      </span>
+    </div>
+    <div class="ms-Dialog-content">
+      <div class="ms-Grid-row pb-2">
+        <div class="ms-Grid-col ms-sm12 ms-md12">
+          {{"This folder is being shared with" | translate}}:
+        </div>
+      </div>
+      <ng-container *ngIf="sharedUser">
+        <div *ngFor="let rowuser of sharedUser" class="ms-Grid-row pt-2 pb-1 border border-left-0 border-right-0">
+          <div class="ms-Grid-col ms-md8">
+            <div class="ms-Grid-row">
+              <div class="ms-Grid-col ms-md12">
+                {{rowuser.name}}
+              </div>
+            </div>
+            <div class="ms-Grid-row second-element">
+              <div class="ms-Grid-col ms-md12">
+                {{rowuser.email}}
+              </div>
+            </div>
+          </div>
+          <div class="ms-Grid-col ms-md4 pt-1">
+            <button type="button" (click)="removeuser(rowuser.id)" type="button"
+              class="btn btn-outline-primary btn-sm btn-block">
+              {{"Remove" | translate}}
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="ms-Dialog-actions float-left">
+      <button type="button" (click)="adduser()" class="ms-Button ms-Button--primary">
+        <span class="ms-Button-label">+ {{"Add User" | translate}}</span>
+      </button>
+      <span *ngIf="!isCollapsed && dropdownList.length==0" class="ms-message">{{"No user found" | translate}}</span>
+    </div>
+    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+      <div class="ms-Grid-row">
+        <div *ngIf="dropdownList.length>0" class="ms-Grid-col ms-sm12 ms-md12 pt-4">
+          <ng-multiselect-dropdown placeholder="{{'select user' | translate}}" [data]="dropdownList"
+            [(ngModel)]="selectedItems" [settings]="dropdownSettings">
+          </ng-multiselect-dropdown>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-3 pb-2">
+          <button type="button" [disabled]="selectedItems.length==0" (click)="(selectedItems.length>0) && saveuser()"
+            class="ms-Button ms-Button--primary float-right">
+            <span class="ms-Button-label">{{"Save" | translate}}</span>
+          </button>
+          <button type="button" (click)="cancel()" class="ms-Button float-right">
+            <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

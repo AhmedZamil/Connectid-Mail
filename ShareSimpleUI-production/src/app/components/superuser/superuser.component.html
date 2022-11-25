@@ -1,0 +1,255 @@
+<div class="container-fluid">
+  <div [formGroup]="filterForm">
+
+    <div class="row no-gutters pt-4 pb-3">
+      <div class="col-md-10 routeheader">
+        {{'Customers' | translate}}
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="ms-Button ms-Button--primary float-right" (click)="openUserdialog()">
+          <span class="ms-Button-label">+ {{"Add Customer" | translate}}</span>
+        </button>
+      </div>
+    </div>
+    <div class="row pt-2 pb-4">
+      <div class="col-md-3">
+        <input formControlName="searchText" type="text" class="form-control form-control-sm"
+          placeholder='{{"Search" | translate}}...'>
+      </div>
+      <div class="col-md-3">
+        <label style="cursor:pointer;">
+          <input type="checkbox" class="form-check-input" formControlName="activeOnly" (change)="loadCompanies()" />
+          {{"Show only active customers" | translate}}
+        </label>
+      </div>
+      <div class="col-md-6" style="height: 20px;">
+        <img *ngIf="loading" class="loadingimage" src="../../../assets/loading.gif">
+      </div>
+    </div>
+  </div>
+
+  <!--data list-->
+  <div class="data-list-header border border-top-0 border-left-0 border-right-0">
+    <div class="row no-gutters">
+      <div class="col-sm-2">
+        {{"Customer Name" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Subscription" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Admin" | translate}}
+      </div>
+      <div class="col-sm-2">
+        {{"Admin email" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Created" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Price per user" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Price per transaction" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Active users" | translate}}
+      </div>
+      <div class="col-sm-1">
+        {{"Action" | translate}}
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="company">
+    <div *ngFor="let rowdata of company | paginate: { itemsPerPage: displayLength, currentPage: currentPage }">
+      <div class="data-list-row border border-light border-top-0 border-left-0 border-right-0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-2">
+              <span class="namelink" style="cursor: pointer;" routerLink="/admin/{{rowdata.id}}"
+                ngbTooltip="{{rowdata.name}}">{{rowdata.name| shorten: 20: '...'}}</span>
+            </div>
+            <div class="col-sm-1">
+              <span class="com-{{rowdata.subscriptionType}}">{{rowdata.subscriptionType | translate}}</span>
+            </div>
+            <div class="col-sm-2">
+              <span *ngIf="rowdata.adminUser"> {{rowdata.adminUser.name}}</span>
+            </div>
+            <div class="col-sm-2">
+              <span *ngIf="rowdata.adminUser"
+                ngbTooltip="{{rowdata.adminUser.email}}">{{rowdata.adminUser.email| shorten: 20: '...'}}</span>
+            </div>
+            <div class="col-sm-1">
+              <span *ngIf="rowdata.adminUser">{{rowdata.created | date}}</span>
+            </div>
+            <div class="col-sm-1">
+              <span *ngIf="rowdata.package.price">
+                {{rowdata.package.price}}
+                <span class="third-element">{{rowdata.package.priceUnit}}</span>
+              </span>
+            </div>
+            <div class="col-sm-1">
+              <span *ngIf="rowdata.package.transactionPrice">
+                {{rowdata.package.transactionPrice}}
+                <span class="third-element">{{rowdata.package.priceUnit}}</span>
+              </span>
+            </div>
+            <div class="col-sm-1">
+              {{rowdata.noOfActiveUsers}}
+            </div>
+            <div class="col-sm-1">
+              <i *ngIf="rowdata.isDeleted != true" style="color:#0078d7;font-size: 16px;cursor: pointer;"
+                class="fa fa-pencil" title="{{'Edit Customer'|translate}}" (click)="openUserdialog(rowdata.id)"></i>
+              <i *ngIf='rowdata.id !== loggedInUser.company.id && rowdata.isDeleted != true'
+                title="{{'Unsubscribe'|translate}}" style="color: #0078d7;font-size: 16px;cursor: pointer;"
+                class="ms-Icon ms-Icon--Unsubscribe" (click)="openUnsubscribeDialog(rowdata.id)"></i>
+              <i *ngIf='rowdata.id !== loggedInUser.company.id && rowdata.isDeleted == true'
+                style="color: #0078d7;font-size: 16px;cursor: pointer;" class="ms-Icon ms-Icon--Subscribe"
+                (click)="openResubscribeDialog(rowdata.id)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="entityCount==0" class="data-list-row">
+      <div class="row">
+        <div class="col-12 text-center">{{"No Data Found" | translate}}</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="data-list-pagination border border-bottom-0 border-left-0 border-right-0 row-striped">
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="second-element" *ngIf="entityCount>0">
+          {{"Showing" | translate}} {{entitystart}} {{"to" | translate}}
+          {{entityend}} {{"of" | translate}} {{entityCount}}
+          {{"entries" | translate}}
+        </p>
+      </div>
+      <div class="col-sm-8">
+        <pagination-controls style="float:right;" previousLabel="{{'Previous' | translate}}"
+          nextLabel="{{'Next' | translate}}" (pageChange)="pageChanged($event)" #api></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <div class="userdialog1">
+    <div class="ms-Dialog ms-Dialog--blocking">
+      <div class="ms-Dialog-title">
+        {{isEdit ? ('Edit Customer' | translate) : ('Add Customer' | translate)}}
+      </div>
+      <form [formGroup]="companyForm">
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+          <div class="ms-TextField">
+            <label class="ms-Label">{{"Name" | translate}}</label>
+            <input formControlName="name" class="ms-TextField-field" type="text" value="" placeholder="">
+          </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+          <div class="ms-TextField">
+            <label class="ms-Label">{{"Address" | translate}}</label>
+            <input formControlName="address" class="ms-TextField-field" type="text" value="" placeholder="">
+          </div>
+        </div>
+        <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+          <div class="ms-TextField">
+            <label class="ms-Label">{{"Domain" | translate}}</label>
+            <input formControlName="domain" class="ms-TextField-field" type="text" value="" placeholder="">
+          </div>
+        </div>
+        <ng-container *ngIf="isEdit">
+          <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+            <div class="ms-TextField">
+              <label class="ms-Label">{{"Price per user" | translate}}</label>
+              <input formControlName="price" class="ms-TextField-field" type="number" min="0" placeholder="">
+            </div>
+          </div>
+          <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+            <div class="ms-TextField">
+              <label class="ms-Label">{{"Price per transaction" | translate}}</label>
+              <input formControlName="transactionPrice" class="ms-TextField-field" type="number" min="0" placeholder="">
+            </div>
+          </div>
+          <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+            <div class="ms-TextField">
+              <label class="ms-Label">{{"Currency" | translate}}</label>
+              <select formControlName="priceUnit" class="form-control form-control-sm">
+                <option *ngFor="let item of priceUnit" [value]="item">{{item}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="ms-Grid-col ms-sm12 ms-md12 pt-1">
+            <div class="ms-TextField">
+              <label class="ms-Label">{{"Promotion code" | translate}}</label>
+              <input formControlName="promotionCode" class="ms-TextField-field" type="text" value="" placeholder="">
+            </div>
+          </div>
+          <div class="ms-Grid-col ms-sm12 ms-md12 pt-1 pb-4" *ngIf='companyForm.value.id !== loggedInUser.company.id'>
+            <label class="ms-Label">{{"Status" | translate}}</label>
+            <div class="form-check">
+              <input formControlName="isActive" type="checkbox" class="form-check-input" id="companyIsActive">
+              <label class="form-check-label" for="companyIsActive">{{"Active" | translate}}</label>
+            </div>
+          </div>
+        </ng-container>
+      </form>
+
+      <div class="ms-Dialog-actions">
+        <img *ngIf="customerSaving" class="loadingimage" src="../../../assets/loading.gif">
+        <button type="button" [disabled]="customerSaving || companyForm.invalid"
+          (click)="companyForm.valid && userSubmit()" class="ms-Button ms-Button--primary">
+          <span class="ms-Button-label">{{"Save" | translate}}</span>
+        </button>
+        <button type="button" [disabled]="customerSaving" (click)="dialogComponent.close()" class="ms-Button">
+          <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="companyUnsubscribeDialog">
+    <div class="ms-Dialog ms-Dialog--blocking">
+      <div class="ms-Dialog-title">
+        {{'Unsubscribe Customer' | translate}}
+      </div>
+      <div class="ms-Dialog-content">
+        {{'Are you sure to unsubscribe this customer?' | translate}}
+      </div>
+
+      <div class="ms-Dialog-actions">
+        <img *ngIf="subNunsubcribing" class="loadingimage" src="../../../assets/loading.gif">
+        <button type="button" [disabled]="subNunsubcribing" (click)="unsubscribeCustomer()"
+          class="ms-Button ms-Button--primary">
+          <span class="ms-Button-label">{{"Unsubscribe" | translate}}</span>
+        </button>
+        <button type="button" [disabled]="subNunsubcribing" (click)="dialogComponent.close()" class="ms-Button">
+          <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="companyResubscribeDialog">
+    <div class="ms-Dialog ms-Dialog--blocking">
+      <div class="ms-Dialog-title">
+        {{'Resubscribe Customer' | translate}}
+      </div>
+      <div class="ms-Dialog-content">
+        {{'Are you sure to resubscribe this customer?' | translate}}
+      </div>
+
+      <div class="ms-Dialog-actions">
+        <img *ngIf="subNunsubcribing" class="loadingimage" src="../../../assets/loading.gif">
+        <button type="button" [disabled]="subNunsubcribing" (click)="resubscribeCustomer()"
+          class="ms-Button ms-Button--primary">
+          <span class="ms-Button-label">{{"Resubscribe" | translate}}</span>
+        </button>
+        <button type="button" [disabled]="subNunsubcribing" (click)="dialogComponent.close()" class="ms-Button">
+          <span class="ms-Button-label">{{"Cancel" | translate}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

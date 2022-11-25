@@ -1,0 +1,87 @@
+.wp-nr {
+  white-space: nowrap;
+}
+
+tr.Error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 2px solid #f5c6cb;
+}
+
+tr.Warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border: 2px solid #ffeeba;
+}
+
+.padding-zero {
+  padding: 0 !important;
+}
+
+tr th {
+  white-space: nowrap;
+}
+
+tr.filter-row td {
+  padding: 0;
+}
+
+.log-info-row {
+  .label {
+    font-weight: bold;
+    width: 120px;
+    display: table-cell;
+    float: left;
+  }
+
+  .text {
+    }
+
+  .label-long {
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    display: table;
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+  }
+
+  .text-long {
+    margin-bottom: 2px;
+  }
+}
+
+.close-dialog-icon {
+  float: right;
+  margin-right: 10px;
+  cursor: pointer;
+  color: #aaa;
+  padding: 5px;
+}
+.search-container {
+  .date-picker {
+    width: 135px;
+    padding-right: 0;
+    padding-left: 2px;
+  }
+
+  #top, #severity {
+    width: 100px;
+  }
+  #company{
+    width:285px;
+  }
+  .form-group {
+    margin: 2px;
+
+    label {
+      margin-right: 5px;
+      width: 70px;
+      display:inline;
+    }
+
+    .form-control {
+      margin-right: 5px;
+    }
+  }
+}
